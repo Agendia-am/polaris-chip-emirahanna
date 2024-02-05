@@ -20,8 +20,7 @@ export class MyCard extends LitElement {
         display: block;
       }
       #cardlist {
-        display: inline-flex;
-        justify-content: stretch;
+        float:left;
       }
 
       .card {
