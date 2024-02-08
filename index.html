@@ -1,72 +1,180 @@
-<!doctype html>
+<!DOCTYPE html>
+
+//I could not make the slot work
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="Description" content="Boilerplate for polaris chip" />
+    <base href="/" />
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Boilerplate for polaris chip">
-  <base href="/">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+      :root,
+      html,
+      body {
+        margin: 16px;
+        padding: 0;
+        font-family: sans-serif;
+        color: #f1f1f1;
+        background-color: #0f0f0f;
+      }
+      polaris-chip {
+        margin: 16px;
+      }
+      button {
+        background-color: #272727;
+        color: #f1f1f1;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        margin: 16px 32px 16px 32px;
+        padding: 16px;
+        border-radius: 32px;
+        border-color: #272727;
+      }
 
-  <style>
-    :root,
-    html,
-    body {
-      margin: 8px;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-    polaris-chip {
-      margin: 16px;
-    }
-  </style>
-  <title>polaris-chip / my-card</title>
-</head>
+      button:focus-within,
+      button:hover {
+        background-color: #ff0000;
+        transition: 0.5s all ease-in-out;
+      }
+    </style>
+    <title>polaris-chip / my-card</title>
+  </head>
 
-<body>
+  <body>
+    <h1>polaris-chip</h1>
+    <!-- this is going to do whatever the tag's defaults are -->
+    <polaris-chip></polaris-chip>
+    <polaris-chip></polaris-chip>
+    <!-- this is going to take the tag and change the title -->
+    <polaris-chip
+      title="CLICK ME"
+      link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ></polaris-chip>
+    <polaris-chip
+      title="CHOOSE ME"
+      link="https://youtu.be/astISOttCQ0?t=6"
+    ></polaris-chip>
+    <polaris-chip
+      title="LOVE ME"
+      link="https://youtu.be/aAkMkVFwAoo"
+    ></polaris-chip>
 
-  <h1>polaris-chip</h1>
-  <!-- this is going to do whatever the tag's defaults are -->
-  <polaris-chip></polaris-chip>
-  <polaris-chip></polaris-chip>
-  <!-- this is going to take the tag and change the title -->
-  <polaris-chip title="CLICK ME" link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></polaris-chip>
-  <polaris-chip title="CHOOSE ME" link="https://youtu.be/astISOttCQ0?t=6"></polaris-chip>
-  <polaris-chip title="LOVE ME" link="https://youtu.be/aAkMkVFwAoo"></polaris-chip>
+    <h1>my-card that totally is not supposed to look like YouTube</h1>
+    <h2>Controls</h2>
+    <div class="control-wrapper">
+      <button class="duplicate">Clone Card</button>
+      <button class="changetitle">Change Title</button>
+      <button class="changeimage">Change Image</button>
+      <button class="bg-change">Change background</button>
+      <button class="delete">Delete Card</button>
+    </div>
 
-  <h1>my-card</h1>
-  <h2>Controls but the control buttons don't work :/</h2>
-  <div class="control-wrapper">
-    <button class="duplicate">Clone Card</button> 
-    <button class="changetitle">Change Title</button>
-    <button class="changeimage">Change Image</button>
-    <button class="bg-change">Change background</button>
-    <button class="delete">Delete Card</button>
-  </div>
-<my-card></my-card>
-  <my-card title="The Second Card"
-    description="It seems we have a problem here boys"
-    image="https://ih1.redbubble.net/image.2464920271.5278/raf,750x1000,075,t,FFFFFF:97ab1c12de.jpg"
-    link="https://youtu.be/qRtplUmuAb8?list=RDqRtplUmuAb8"></my-card>
-  <my-card title="tell me why"
-    description="ain't nothing but a heartbreak, ain't nothing but a mistake"
-    image="https://upload.wikimedia.org/wikipedia/commons/9/9a/Backstreet_Boys_2019_by_Glenn_Francis.jpg"></my-card>
-  <my-card title="Click the Button for Hockey"
-    description="Hockey is Very Hockey don't you Hockey?"
-    image="https://assets.isu.pub/document-structure/211004145325-4aad8b21063b7ba17377aa412a460a37/v1/65b66935e3d5ca0fec15c8e8c39b29db.jpeg"
-    link="https://ncrha.org/player/_/65815"></my-card>
-  <my-card title="this is the reason behind all my problems"
-    description="(the reason is me. im the problem, its me)"
-    image="https://i.imgflip.com/1otri4.jpg?a474192"
-    link="https://i.imgflip.com/7ul93u.jpg"></my-card>
+    <div class="card-list">
+      <my-card>
+        <p>THIS <strong>THIS</strong></p>
+      </my-card>
+      <my-card
+        fancy
+        label="Fresh Prince"
+        image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPgSRgEYJ3lY8Ky8wNqfoJqWe2U2VMe-RIKbO_0HSXGj5sHA-_"
+        ><p>are you <strong>OKAYYYYY</strong> <em>i am not :(</em></p>
+      </my-card>
+      <my-card></my-card>
+      <my-card
+        label="This Card should result in an overflow and if you don't see a ... there is a problem that you need to fix"
+        description="It seems we have a problem here boys"
+        image="https://ih1.redbubble.net/image.2464920271.5278/raf,750x1000,075,t,FFFFFF:97ab1c12de.jpg"
+        link="https://youtu.be/qRtplUmuAb8?list=RDqRtplUmuAb8"
+      ><</my-card>
+      <my-card
+        label="tell me why"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu lobortis elementum nibh tellus molestie. Molestie at elementum eu facilisis sed odio. Porttitor massa id neque aliquam vestibulum morbi blandit. Quis hendrerit dolor magna eget est. Volutpat lacus laoreet non curabitur gravida arcu ac. Faucibus pulvinar elementum integer enim. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Duis ultricies lacus sed turpis. Neque sodales ut etiam sit amet nisl purus in. Sit amet porttitor eget dolor. Hac habitasse platea dictumst quisque sagittis purus sit amet volutpat. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Suspendisse sed nisi lacus sed viverra tellus in. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Eget velit aliquet sagittis id. Vitae purus faucibus ornare suspendisse sed nisi lacus sed viverra."
+        image="https://upload.wikimedia.org/wikipedia/commons/9/9a/Backstreet_Boys_2019_by_Glenn_Francis.jpg"
+      ></my-card>
+      <my-card
+        label="Click the Button for Hockey"
+        description="Hockey is Very Hockey don't you Hockey?"
+        image="https://assets.isu.pub/document-structure/211004145325-4aad8b21063b7ba17377aa412a460a37/v1/65b66935e3d5ca0fec15c8e8c39b29db.jpeg"
+        link="https://ncrha.org/player/_/65815"
+      ></my-card>
+      <my-card
+        label="this is the reason behind all my problems"
+        description="(the reason is me. im the problem, its me)"
+        image="https://i.imgflip.com/1otri4.jpg?a474192"
+        link="https://i.imgflip.com/7ul93u.jpg"
+      ></my-card>
+    </div>
 
-  <!-- this is what is bringing in the definition for this tag -->
-  <script type="module" src="./src/polaris-chip.js"></script>
-  <script type="module" src="./src/my-card.js"></script>
-</body>
+    <!-- this is what is bringing in the definition for this tag -->
+    <script type="module" src="./src/polaris-chip.js"></script>
+    <script type="module" src="./src/my-card.js"></script>
+  </body>
 
+  <script>
+    //Clone first card
+    document
+      .querySelector(".duplicate")
+      .addEventListener("click", function (event) {
+        
+        if (document.querySelector(".card-list").children.length < 10) {
+          const newCard = document.querySelector("my-card").cloneNode(true);
+          document.querySelector(".card-list").appendChild(newCard);
+        }
+      });
+
+    // Change title
+    document
+      .querySelector(".changetitle")
+      .addEventListener("click", function (e) {
+        const cards = document.querySelectorAll("my-card");
+        cards.forEach(function (card) {
+          card.label = "Did you not like the title :<";
+        });
+      });
+
+    //TODO: Implement Toggle for this
+    document
+      .querySelector(".changeimage")
+      .addEventListener("click", function (e) {
+        const cards = document.querySelectorAll("my-card");
+        cards.forEach(function (card) {
+          card.image =
+            "https://i.pinimg.com/736x/0c/7b/a0/0c7ba0a7f5a817a2765147d9066c7122.jpg";
+        });
+      });
+
+    // change background
+    document
+      .querySelector(".bg-change")
+      .addEventListener("click", function (e) {
+        const cards = document.querySelectorAll("my-card");
+        cards.forEach((card) => {
+          card.shadowRoot
+            .querySelector(".card")
+            .classList.toggle("change-color");
+        });
+      });
+
+    // delete 1 card
+
+    document.querySelector(".delete").addEventListener("click", function (e) {
+      const cards = document.querySelectorAll("my-card");
+
+      if (cards.length !== 1) {
+        
+          cards[cards.length - 1].remove();
+        }
+    });
+  </script>
 </html>
