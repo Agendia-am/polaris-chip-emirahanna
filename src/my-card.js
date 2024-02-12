@@ -35,7 +35,8 @@ export class MyCard extends LitElement {
         --card-text-color: #0f0f0f;
         border: 6px solid #0f0f0f;
         border-radius: 12px;
-        box-shadow: -10px -10px 5px 2px #1ff7ef , 10px 5px 5px #ff0000;
+        box-shadow: -10px -10px 5px 2px #1ff7ef, 10px 5px 5px #ff0000;
+        animation: fadeIn 1s;
       }
 
       .card {
@@ -96,9 +97,10 @@ export class MyCard extends LitElement {
         object-fit: cover;
       }
 
-      .img-container{
+      .img-container {
         text-align: center;
       }
+      
 
       .btn:focus,
       .btn:hover {
@@ -106,10 +108,28 @@ export class MyCard extends LitElement {
         color: #f1f1f1;
       }
 
-      .card:hover{
+      .card:hover {
         opacity: 1;
         box-shadow: 0 0 0 2px #f1f1f1;
         transition: box-shadow 500ms;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @-webkit-keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
     `;
   }
