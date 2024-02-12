@@ -1,12 +1,5 @@
 import { LitElement, html, css } from "lit";
 
-//lol what is not working
-//the outline thats supposed to be there when it hovers over a card
-
-//TODO:
-//what is fancy pls tell me what
-//Implement the javascript buttons
-
 export class MyCard extends LitElement {
   static get tag() {
     return "my-card";
@@ -31,25 +24,24 @@ export class MyCard extends LitElement {
         --card-title-color: #f1f1f1;
         --card-text-color: #272727;
         flex-direction: row;
-        transition: 0.5s all ease-in-out;
+        transition: all 200ms 100ms;
+        margin: 8px;
       }
-      
+
       :host([fancy]) {
         display: inline-flex;
         --card-background-color: #f1f1f1;
         --card-title-color: #0f0f0f;
         --card-text-color: #0f0f0f;
-        border: 5px solid fuchsia;
+        border: 6px solid #0f0f0f;
         border-radius: 12px;
-        box-shadow: 10px 5px 5px #ff0000;
-        transform: scale(0.95);
-        }
+        box-shadow: -10px -10px 5px 2px #1ff7ef , 10px 5px 5px #ff0000;
+      }
 
       .card {
-        width: 300px;
+        width: 290px;
         max-height: 500px;
         padding: 24px;
-        margin: 8px;
         background-color: var(--card-background-color);
         opacity: 0.8;
         border-radius: 8px;
@@ -81,8 +73,11 @@ export class MyCard extends LitElement {
         margin-left: 10px;
         color: var(--card-title-color);
         overflow: hidden;
-        height: 40px;
-      
+        height: 45px;
+      }
+
+      .dropdown {
+        color: var(--card-title-color);
       }
 
       .text {
@@ -111,24 +106,19 @@ export class MyCard extends LitElement {
         color: #f1f1f1;
       }
 
-      .card:hover,
-      .card:focus-within {
-        outline: 10px red;
-        outline-offset: 16px;
+      .card:hover{
         opacity: 1;
+        box-shadow: 0 0 0 2px #f1f1f1;
+        transition: box-shadow 500ms;
       }
-
-
     `;
   }
 
-  // put this anywhere on the MyCard class; just above render() is probably good
   openChanged(e) {
     console.log(e.newState);
     if (e.newState === "open") {
       this.fancy = true;
-    }
-    else {
+    } else {
       this.fancy = false;
     }
   }
@@ -146,7 +136,7 @@ export class MyCard extends LitElement {
         </div>
         <h1 class="label">${this.label}</h1>
         <!-- put this in your render method where you had details -->
-        <details ?open="${this.fancy}" @toggle="${this.openChanged}">
+        <details class="dropdown" ?open="${this.fancy}" @toggle="${this.openChanged}">
           <summary>Read More</summary>
           <div class="text">
             <slot>${this.description}</slot>
@@ -158,15 +148,14 @@ export class MyCard extends LitElement {
       </div>
     </div>`;
   }
-  
 
   static get properties() {
     return {
-      label: { type: String, reflect: true},
-      description: { type: String, reflect: true},
+      label: { type: String, reflect: true },
+      description: { type: String, reflect: true },
       link: { type: String },
       image: { type: String, reflect: true },
-      fancy: {type: Boolean, reflect: true},
+      fancy: { type: Boolean, reflect: true },
     };
   }
 }
