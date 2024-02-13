@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import "@lrnwebcomponents/meme-maker/meme-maker.js";
 
 export class MyCard extends LitElement {
   static get tag() {
@@ -11,8 +12,8 @@ export class MyCard extends LitElement {
     this.link = "https://hax.psu.edu";
     this.description =
       "The picture above is a CSS meme about an airconditioner that was installed half inside the wall. In other words, the airconditioner has negative margins.";
-    this.image =
-      "https://i.pinimg.com/originals/3d/8d/d8/3d8dd8fb5efdfd2ecedae9d47e1a1737.jpg";
+    //this.image =
+    //  "https://i.pinimg.com/originals/3d/8d/d8/3d8dd8fb5efdfd2ecedae9d47e1a1737.jpg";
     this.fancy = false;
   }
 
@@ -99,7 +100,6 @@ export class MyCard extends LitElement {
       .img-container {
         text-align: center;
       }
-      
 
       .btn:focus,
       .btn:hover {
@@ -147,11 +147,11 @@ export class MyCard extends LitElement {
     <div class="card">
       <div>
         <div class="img-container"></h2>
-          <img
-            class="pic"
-            src="${this.image}"
-            alt="CSS Meme relating to an airconditioner being too far into the wall"
-          />
+          <meme-maker
+            class="image"
+            alt="Cat stalking a small toy"
+            image-url="https://cdn2.thecatapi.com/images/9j5.jpg" top-text="I bring you" bottom-text="the death">
+          </meme-maker>
         </div>
         <h1 class="label">${this.label}</h1>
         <!-- put this in your render method where you had details -->
@@ -173,7 +173,7 @@ export class MyCard extends LitElement {
       label: { type: String, reflect: true },
       description: { type: String, reflect: true },
       link: { type: String },
-      image: { type: String, reflect: true },
+      //image: { type: String, reflect: true },
       fancy: { type: Boolean, reflect: true },
     };
   }
