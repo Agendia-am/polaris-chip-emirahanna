@@ -23,7 +23,6 @@ export class MyCard extends LitElement {
         --card-background-color: #0f0f0f;
         --card-title-color: #f1f1f1;
         --card-text-color: #272727;
-        flex-direction: row;
         transition: all 200ms 100ms;
         margin: 8px;
       }
