@@ -12,8 +12,8 @@ export class MyCard extends LitElement {
     this.link = "https://hax.psu.edu";
     this.description =
       "The picture above is a CSS meme about an airconditioner that was installed half inside the wall. In other words, the airconditioner has negative margins.";
-    //this.image =
-    //  "https://i.pinimg.com/originals/3d/8d/d8/3d8dd8fb5efdfd2ecedae9d47e1a1737.jpg";
+    this.image =
+      "https://64.media.tumblr.com/c28c7ef99543adf79dfa4ac5ad925c69/5306dfa7c930562e-81/s540x810/305545d0af2b73cc624f1d61556898a0908b38f7.gif";
     this.fancy = false;
   }
 
@@ -90,15 +90,11 @@ export class MyCard extends LitElement {
         height: 50px;
       }
 
-      .pic {
+      .img{
         width: 300px;
         height: 200px;
         border-radius: 15px;
         object-fit: cover;
-      }
-
-      .img-container {
-        text-align: center;
       }
 
       .btn:focus,
@@ -148,10 +144,12 @@ export class MyCard extends LitElement {
       <div>
         <div class="img-container"></h2>
           <meme-maker
-            class="image"
+            class="img"
             alt="Cat stalking a small toy"
-            image-url="https://cdn2.thecatapi.com/images/9j5.jpg" top-text="I bring you" bottom-text="the death">
-          </meme-maker>
+            image-url=${this.image}
+            top-text="I bring you" bottom-text="the death"
+            
+          ></meme-maker>
         </div>
         <h1 class="label">${this.label}</h1>
         <!-- put this in your render method where you had details -->
@@ -173,7 +171,7 @@ export class MyCard extends LitElement {
       label: { type: String, reflect: true },
       description: { type: String, reflect: true },
       link: { type: String },
-      //image: { type: String, reflect: true },
+      image: { type: String, reflect: true },
       fancy: { type: Boolean, reflect: true },
     };
   }

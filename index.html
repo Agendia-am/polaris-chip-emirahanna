@@ -18,6 +18,13 @@
       rel="stylesheet"
     />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Titan+One&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       :root,
       html,
@@ -52,6 +59,10 @@
   </head>
 
   <body>
+    <h1>counter-app</h1>
+    <counter-app></counter-app>
+    <counter-app counter=9 max=30 min=-1000></counter-app>
+
     <h1>polaris-chip</h1>
     <!-- this is going to do whatever the tag's defaults are -->
     <polaris-chip></polaris-chip>
@@ -88,7 +99,7 @@
         description="Another overflow check in which i use Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu lobortis elementum nibh tellus molestie. Molestie at elementum eu facilisis sed odio. Porttitor massa id neque aliquam vestibulum morbi blandit. Quis hendrerit dolor magna eget est. Volutpat lacus laoreet non curabitur gravida arcu ac. Faucibus pulvinar elementum integer enim. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Duis ultricies lacus sed turpis. Neque sodales ut etiam sit amet nisl purus in. Sit amet porttitor eget dolor. Hac habitasse platea dictumst quisque sagittis purus sit amet volutpat. Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Suspendisse sed nisi lacus sed viverra tellus in. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. Eget velit aliquet sagittis id. Vitae purus faucibus ornare suspendisse sed nisi lacus sed viverra."
         image="https://static1.srcdn.com/wordpress/wp-content/uploads/2019/06/Vegeta-Its-Over-9000-Dragon-Ball-Z.jpg"
         link="https://youtu.be/QsDDXSmGJZA"
-        ></my-card>
+      ></my-card>
       <my-card
         label="this so fire"
         description="literally"
@@ -108,15 +119,16 @@
         link="https://i.imgflip.com/7ul93u.jpg"
       ></my-card>
       <my-card
-      label="Fresh Prince"
-      image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPgSRgEYJ3lY8Ky8wNqfoJqWe2U2VMe-RIKbO_0HSXGj5sHA-_"
-      ><p>are you <strong>OKAYYYYY</strong> <em>i am not :(</em></p>
-    </my-card>
+        label="Fresh Prince"
+        image="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRPgSRgEYJ3lY8Ky8wNqfoJqWe2U2VMe-RIKbO_0HSXGj5sHA-_"
+        ><p>are you <strong>OKAYYYYY</strong> <em>i am not :(</em></p>
+      </my-card>
     </div>
 
     <!-- this is what is bringing in the definition for this tag -->
     <script type="module" src="./src/polaris-chip.js"></script>
     <script type="module" src="./src/my-card.js"></script>
+    <script type="module" src="./src/counter-app.js"></script>
   </body>
 
   <script>
@@ -171,5 +183,13 @@
         cards[cards.length - 1].remove();
       }
     });
+
+    //increments the counter variable
+    const countcard = document.querySelector("counter-app");
+    countcard.shadowRoot
+      .querySelector(".plus")
+     .addEventListener("click", function (e) {
+        countcard.counter++;
+      });
   </script>
 </html>
