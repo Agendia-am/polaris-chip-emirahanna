@@ -8,8 +8,8 @@ export class CounterApp extends LitElement {
   constructor() {
     super();
     this.counter = 0;
-    this.max = 30;
-    this.min = -30;
+    this.max = 2;
+    this.min = -2;
   }
 
   static get styles() {
@@ -36,10 +36,10 @@ export class CounterApp extends LitElement {
         font-size: 64px;
       }
 
-      .plus,
-      .minus {
-        width: 40px;
-        height: 40px;
+      .plus-container,
+      .minus-container {
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         font-size: 18px;
         background-color: #ff0000;
@@ -57,8 +57,8 @@ export class CounterApp extends LitElement {
         <h1 class="counter">${this.counter}</h1>
       </div>
       <div>
-        <button class="plus">+</button>
-        <button class="minus">-</button>
+        <button class="plus-container" @click="${this.plus}" >+</button>
+        <button class="minus-container" @click="${this.minus}">-</button>
       </div>
       <div class="minmaxval">
         <p>Min: ${this.min}</p>
@@ -67,19 +67,20 @@ export class CounterApp extends LitElement {
     </div>`;
   }
 
-  /*
   plus() {
     //increments the counter value if the .plus button is clicked
+    if(this.counter < this.max  && this.counter >= this.min){
     this.counter++;
+    }
   }
-
+  
   minus() {
     //increments the counter value if the .plus button is clicked
-    this.counter--;
+    if(this.counter <= this.max  && this.counter > this.min){
+      this.counter--;
+      }
   }
-
-  */
-
+  
 
   static get properties() {
     return {
@@ -91,3 +92,5 @@ export class CounterApp extends LitElement {
 }
 
 globalThis.customElements.define(CounterApp.tag, CounterApp);
+
+  

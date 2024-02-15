@@ -184,12 +184,17 @@
       }
     });
 
+    /*
+    
     //increments the counter variable
     const countcard = document.querySelector("counter-app");
     countcard.shadowRoot
       .querySelector(".plus")
      .addEventListener("click", function (e) {
-        countcard.counter++;
+        //countcard.counter++;
+        countcard.shadowRoot
+            .querySelector("counter") += 1;
       });
+      */
   </script>
 </html>
