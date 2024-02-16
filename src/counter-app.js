@@ -26,7 +26,8 @@ export class CounterApp extends LitElement {
         transition: all 250ms 50ms ease-in-out;
         /*
         to mess around with later because text gradient looks so cool
-        background: linear-gradient(to right, red, blue);
+        
+        background: linear-gradient( red, blue);
         background-clip: text;
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;
@@ -72,7 +73,7 @@ export class CounterApp extends LitElement {
         /*specify to make sure the tags don't change when the counter's colors are changes*/
         color: var(--text-color);
         display: inline-flex;
-        margin: 24px 4px px 4px;
+        margin: 24px 4px 24px 4px;
       }
 
       .plus-button:hover,
@@ -86,17 +87,21 @@ export class CounterApp extends LitElement {
   }
 
   render() {
-    var textColor;
+    var textcolor;
+    var bgcolor;
     if (this.counter === this.min || this.counter === this.max) {
-      textColor = "#f4ac3b";
+      textcolor = "#f4ac3b";
+      bgcolor= "#ff0000";
+
     }
     if (this.counter === this.max) {
-      textColor = "#ffe301";
+      textcolor = "#ffe301";
+      bgcolor= "#ff0000";
     }
     return html` <confetti-container id="confetti">
-      <div class="card">
+      <div class="card" style="background-color:${bgcolor}; border-radius: 16px;">
         <div class="counter-container">
-          <h1 class="counter" style="color:${textColor};">${this.counter}</h1>
+          <h1 class="counter" style="color:${textcolor};">${this.counter}</h1>
         </div>
         <div>
           <button
