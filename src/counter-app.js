@@ -24,19 +24,30 @@ export class CounterApp extends LitElement {
         border-radius: 16px;
         display: inline-flex;
         transition: all 250ms 50ms ease-in-out;
+        /*
+        to mess around with later because text gradient looks so cool
+        background: linear-gradient(to right, red, blue);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+
+        */
       }
 
+      /* Checks if the value of counter is 18, and changes the text and background color.*/
       :host([counter="18"]) {
         color: #ffe301;
         background: linear-gradient(#670097, #ffe301);
       }
+
+      /* Checks if the value of counter is 21, and changes the text and background color.*/
       :host([counter="21"]) {
         color: #f4ac3b;
         background: linear-gradient(#000000, #0172fc);
       }
 
       .card {
-        width: 200px;
+        width: 240px;
         padding: 24px;
       }
 
@@ -46,33 +57,42 @@ export class CounterApp extends LitElement {
         padding-top: 16px;
       }
 
-      button {
+      .plus-button,
+      .minus-button {
         background-color: rgba(0, 0, 0, 0.01);
         color: var(--text-color);
         width: 50px;
         height: 50px;
         border-radius: 50%;
         border-color: #5f86ca;
-        font-size: 18px;
+        font-size: 24px;
       }
-
-      .minmaxval{
+      .minval,
+      .maxval {
+        /*specify to make sure the tags don't change when the counter's colors are changes*/
         color: var(--text-color);
+        display: inline-flex;
+        margin: 24px 4px px 4px;
       }
 
-      button:hover,
-      button:focus-within {
-        outline: 10px white;
+      .plus-button:hover,
+      .plus-button:focus-within,
+      .minus-button:hover,
+      .minus-button:focus-within {
+        /*changes alpha value (looks less transparent), when focused or hovered*/
+        background-color: rgba(0, 0, 0, 0.8);
       }
     `;
   }
 
   render() {
-
     var textColor;
-    if(this.counter === this.min || this.counter === this.max){
-      textColor="#f4ac3b";
-    };
+    if (this.counter === this.min || this.counter === this.max) {
+      textColor = "#f4ac3b";
+    }
+    if (this.counter === this.max) {
+      textColor = "#ffe301";
+    }
     return html` <confetti-container id="confetti">
       <div class="card">
         <div class="counter-container">
@@ -94,9 +114,9 @@ export class CounterApp extends LitElement {
             +
           </button>
         </div>
-        <div class="minmaxval">
-          <p>Min: ${this.min}</p>
-          <p>Max: ${this.max}</p>
+        <div>
+          <p class="minval">Min: ${this.min}</p>
+          <p class="maxval">Max: ${this.max}</p>
         </div>
       </div>
     </confetti-container>`;
@@ -150,7 +170,6 @@ export class CounterApp extends LitElement {
       counter: { type: Number, reflect: true },
       max: { type: Number, reflect: true },
       min: { type: Number, reflect: true },
-      //textColor: {type: String, reflect: true},
     };
   }
 }
