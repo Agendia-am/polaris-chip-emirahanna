@@ -90,14 +90,11 @@ export class CounterApp extends LitElement {
     var textcolor;
     var bgcolor;
     if (this.counter === this.min || this.counter === this.max) {
-      textcolor = "#f4ac3b";
+      textcolor = "#ffe301";
       bgcolor= "#ff0000";
 
     }
-    if (this.counter === this.max) {
-      textcolor = "#ffe301";
-      bgcolor= "#ff0000";
-    }
+    
     return html` <confetti-container id="confetti">
       <div class="card" style="background-color:${bgcolor}; border-radius: 16px;">
         <div class="counter-container">
