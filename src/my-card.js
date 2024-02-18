@@ -153,10 +153,12 @@ export class MyCard extends LitElement {
     <div class="card">
       <div>
         <div class="img-container"></h2>
-          <img
-            class="img"
-            src=${this.image}
-          ></img>
+          <meme-maker
+            class="image"
+            alt="Cat stalking a small toy"
+            image-url="${this.image}"
+            top-text="I bring you" bottom-text="the death">
+            </meme-maker>
         </div>
         <h1 class="label">${this.label}</h1>
         <!-- put this in your render method where you had details -->
