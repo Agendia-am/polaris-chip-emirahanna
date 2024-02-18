@@ -54,7 +54,7 @@ export class CounterApp extends LitElement {
 
       .counter {
         font-family: "Urbanist", sans-serif;
-        font-size: 84px;
+        font-size: 92px;
         padding-top: 16px;
       }
 
@@ -94,13 +94,13 @@ export class CounterApp extends LitElement {
       bgcolor= "#ff0000";
 
     }
-    
     return html` <confetti-container id="confetti">
       <div class="card" style="background-color:${bgcolor}; border-radius: 16px;">
         <div class="counter-container">
           <h1 class="counter" style="color:${textcolor};">${this.counter}</h1>
         </div>
         <div>
+          <!-- It does not look like the button is disabled when it hits min/max, but if you look closely the outline color doesn't change so it should be disabled -->
           <button
             class="minus-button"
             @click="${this.minus}"
