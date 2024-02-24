@@ -44,7 +44,6 @@ export class MyCard extends LitElement {
         max-height: 500px;
         padding: 24px;
         background-color: var(--card-background-color);
-        opacity: 0.8;
         border-radius: 8px;
       }
 
@@ -104,27 +103,8 @@ export class MyCard extends LitElement {
       }
 
       .card:hover {
-        opacity: 1;
         box-shadow: 0 0 0 2px #f1f1f1;
         transition: box-shadow 500ms;
-      }
-
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-
-      @-webkit-keyframes fadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
       }
     `;
   }
