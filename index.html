@@ -22,7 +22,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
-    />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <style>
       :root,
       html,
@@ -53,13 +56,22 @@
         background-color: #ff0000;
         transition: 0.5s all ease-in-out;
       }
+
+      .test{
+        font-family: "Roboto-Bold", sans-serif;
+        font-style: italic;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+        line-height: 20px;
+        --dark-text-color: #000321;
+        color: white;
+      }
     </style>
     <title>polaris-chip / my-card</title>
   </head>
 
   <body>
     <alert-block></alert-block>
-
     <h1>counter-app</h1>
     <!-- 4 Tests. 1 default and 3 with values supplied -->
     <counter-app></counter-app>

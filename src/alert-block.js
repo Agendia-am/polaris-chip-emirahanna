@@ -7,7 +7,7 @@ export class AlertBlock extends LitElement {
 
   constructor() {
     super();
-    this.open = false;
+    this.close = false;
     this.sticky = true;
     this.date = "NOVEMBER 17, 2023 12:00 AM";
     this.status = "notice";
@@ -24,19 +24,27 @@ export class AlertBlock extends LitElement {
         width: 100%;
         min-height: 185px;
         display: inline-flex;
-        font-family: "Roboto", Helvetica, Arial, Lucida, sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 16px;
         font-weight: 700;
-        letter-spacing: 0.03rem;
+        letter-spacing: 0.5px;
+        line-height: 20px;
         transition: 200ms 250ms all ease-in-out;
       }
 
       :host([open]) {
+        --foreground-color: #ffd100;
         display: inline-flex;
-        background-color: red;
-        border: 6px solid #0f0f0f;
-        box-shadow: -10px -10px 5px 2px #1ff7ef, 10px 5px 5px #ff0000;
-      }
+        background-color: var(--foreground-color);
+        width: 100%;
+        min-height: 54px;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        line-height: 20px;
+        transition: 200ms 250ms all ease-in-out;
+ }
 
       .alert {
         max-height: 258;
@@ -47,6 +55,20 @@ export class AlertBlock extends LitElement {
 
       .alert-content {
         display: inline-flex;
+        position: relative;
+      }
+
+      .alert-content::before {
+        display: inline-flex;
+        content: " ";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 2rem;
+        left: -0.8rem;
+        border-left: 35px solid transparent;
+        border-right: 0px solid transparent;
+        border-bottom: 30px solid var(--foreground-color);
       }
 
       .paralellogram {
@@ -61,7 +83,7 @@ export class AlertBlock extends LitElement {
         left: 0;
         bottom: 0;
         right: 0;
-        width: 1025px;
+        width: 1023px;
         height: 100%;
         max-height: 258px;
         transform: skew(20deg);
@@ -69,24 +91,8 @@ export class AlertBlock extends LitElement {
         z-index: 0; /* Makes it so that I can have order in the divs? Basically sends it to the back*/
       }
 
-      /*
-      .alert-left-angle {
-        height: 0;
-        width: 0;
-        border-bottom: 185.6px solid transparent;
-        border-right: 60px solid var(--foreground-color);
-      }
-
-      .alert-right-angle {
-        height: 0;
-        width: 0;
-        border-top: 185.6px solid transparent;
-        border-left: 60px solid var(--foreground-color);
-      }
-      */
-
       .alert-date {
-        padding: 16px 40px 16px 4px;
+        padding: 16px 50px 16px 4px;
         margin: auto;
         max-width: 150px;
       }
@@ -102,22 +108,28 @@ export class AlertBlock extends LitElement {
       }
 
       .alert-message {
-        max-width: 906px;
-        min-width:153px;
+        max-width: 930px;
+        min-width: 153px;
         max-height: 258px;
         margin: auto;
-        font-style: oblique 50deg;
-        font-weight: 700;
+        font-family: "Roboto-Bold", sans-serif;
+        font-style: italic;
         font-size: 18px;
+        letter-spacing: 0.5px;
         line-height: 20px;
-        letter-spacing: 0.48px;
         color: var(--dark-text-color);
+        text-size-adjust: 100%;
         z-index: 1;
       }
 
-      .alert-info{
+      .alert-info {
         position: relative;
         z-index: 1;
+        color: var(--dark-text-color);
+      }
+
+      .alert-button {
+        padding: 36px 0px 0px 48px;
       }
 
       .btn {
@@ -127,7 +139,6 @@ export class AlertBlock extends LitElement {
         position: relative;
         font-weight: 700;
         letter-spacing: 0.03rem;
-        padding: 60px;
         font-size: 16px;
         color: #ffffff;
         z-index: 1;
@@ -187,9 +198,11 @@ export class AlertBlock extends LitElement {
               reprehenderit cillum id. Minim minim elit occaecat id velit fugiat
               ea. Aliqua excepteur ea excepteur cillum esse voluptate non elit
               laboris laboris esse est sunt incididunt ullamco.
-              <a href="https://www.psu.edu/news" class="alert-info"> PENN STATE NEWS</a>
+              <a href="https://www.psu.edu/news" class="alert-info">
+                PENN STATE NEWS</a
+              >
             </p>
-            </div>
+          </div>
           <div class="alert-button">
             <button class="btn" ?active="${this.fancy}">🞬CLOSE</button>
           </div>
@@ -200,7 +213,7 @@ export class AlertBlock extends LitElement {
 
   static get properties() {
     return {
-      open: { type: Boolean, reflect: true },
+      close: { type: Boolean, reflect: true },
       sticky: { type: Boolean, reflect: true },
       date: { type: Date, reflect: true },
       status: { type: String, reflect: true },
