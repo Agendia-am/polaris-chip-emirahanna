@@ -11,6 +11,8 @@ export class AlertBlock extends LitElement {
     this.sticky = true;
     this.date = "NOVEMBER 17, 2023 12:00 AM";
     this.status = "notice";
+    this.link = "https://www.psu.edu/news";
+    this.message="Occaecat laboris incididunt ea labore quis in qui commodo velit cillum et commodo. Dolore consectetur eu eu reprehenderit anim fugiat in nostrud anim magna enim nisi. Mollit est incididunt sin aliqua duis. Deserunt ut velit deserunt fugiat eiusmod. Doincididunt laborum aliqua cupidatat adipisicing fugiat reprehenderit cillum id. Minim minim elit occaecat id velit fugiat ea. Aliqua excepteur ea excepteur cillum esse voluptate non elit laboris laboris esse est sunt incididunt ullamco.";
   }
 
   static get styles() {
@@ -190,21 +192,14 @@ export class AlertBlock extends LitElement {
               </g>
             </svg>
             <p class="alert-message">
-              Occaecat laboris incididunt ea labore quis in qui commodo velit
-              cillum et commodo. Dolore consectetur eu eu reprehenderit anim
-              fugiat in nostrud anim magna enim nisi. Mollit est incididunt sint
-              aliqua duis. Deserunt ut velit deserunt fugiat eiusmod. Do
-              incididunt laborum aliqua cupidatat adipisicing fugiat
-              reprehenderit cillum id. Minim minim elit occaecat id velit fugiat
-              ea. Aliqua excepteur ea excepteur cillum esse voluptate non elit
-              laboris laboris esse est sunt incididunt ullamco.
-              <a href="https://www.psu.edu/news" class="alert-info">
+            ${this.message}
+              <a href= ${this.link} class="alert-info">
                 PENN STATE NEWS</a
               >
             </p>
           </div>
           <div class="alert-button">
-            <button class="btn" ?active="${this.fancy}">🞬CLOSE</button>
+            <button class="btn" ?active="${this.open}">🞬CLOSE</button>
           </div>
         </div>
       </div>
@@ -217,6 +212,8 @@ export class AlertBlock extends LitElement {
       sticky: { type: Boolean, reflect: true },
       date: { type: Date, reflect: true },
       status: { type: String, reflect: true },
+      message: { type: String, reflect: true },
+      link: { type: String, reflect: true },
     };
   }
 }
