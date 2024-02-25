@@ -24,7 +24,7 @@ export class AlertBlock extends LitElement {
         width: 100%;
         min-height: 185px;
         display: inline-flex;
-        font-family: "Roboto", sans-serif;
+        font-family: "Arial", sans-serif;
         font-size: 16px;
         font-weight: 700;
         letter-spacing: 0.5px;
