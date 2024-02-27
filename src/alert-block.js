@@ -8,23 +8,24 @@ export class AlertBlock extends LitElement {
   constructor() {
     super();
     this.close = false;
-    this.sticky = true;
+    this.sticky = false;
     this.date = "NOVEMBER 17, 2023 12:00 AM";
-    this.status = "notice";
+    this.status = "warning";
     this.link = "https://www.psu.edu/news";
-    this.message="Occaecat laboris incididunt ea labore quis in qui commodo velit cillum et commodo. Dolore consectetur eu eu reprehenderit anim fugiat in nostrud anim magna enim nisi. Mollit est incididunt sin aliqua duis. Deserunt ut velit deserunt fugiat eiusmod. Doincididunt laborum aliqua cupidatat adipisicing fugiat reprehenderit cillum id. Minim minim elit occaecat id velit fugiat ea. Aliqua excepteur ea excepteur cillum esse voluptate non elit laboris laboris esse est sunt incididunt ullamco.";
+    this.message =
+      "Occaecat laboris incididunt ea labore quis in qui commodo velit cillum et commodo. Dolore consectetur eu eu reprehenderit anim fugiat in nostrud anim magna enim nisi. Mollit est incididunt sin aliqua duis. Deserunt ut velit deserunt fugiat eiusmod. Doincididunt laborum aliqua cupidatat adipisicing fugiat reprehenderit cillum id. Minim minim elit occaecat id velit fugiat ea. Aliqua excepteur ea excepteur cillum esse voluptate non elit laboris laboris esse est sunt incididunt ullamco.";
   }
 
   static get styles() {
     return css`
       :host {
-        --background-color: #bf8226;
         --foreground-color: #ffd100;
-        --dark-text-color: #000321;
-        color: #ffffff;
+        --background-color: #bf8226;
+        --foreground-text-color: #000321;
+        --background-text-color: #ffffff;
         background-color: var(--background-color);
         width: 100%;
-        min-height: 185px;
+        height: 185px;
         display: inline-flex;
         font-family: "Arial", sans-serif;
         font-size: 16px;
@@ -34,22 +35,38 @@ export class AlertBlock extends LitElement {
         transition: 200ms 250ms all ease-in-out;
       }
 
-      :host([open]) {
-        --foreground-color: #ffd100;
-        display: inline-flex;
+      :host([status="alert"]){
+        --foreground-color: #bf3026;
+        --background-color: #000000;
+        --foreground-text-color: #ffffff;
+        --background-text-color: #000321;
+      }
+
+      :host([status="notice"]){
+        --foreground-color: lightblue;
+        --background-color: blue;
+        --foreground-text-color: #ffffff;
+        --background-text-color: #000321;
+      }
+
+      :host([sticky]) {
+        position: sticky;
+        top: 0;
+      }
+
+      :host([close]) {
+        height: 50px;
+        transition: all .6s linear;
         background-color: var(--foreground-color);
-        width: 100%;
-        min-height: 54px;
-        font-family: "Roboto", sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        line-height: 20px;
-        transition: 200ms 250ms all ease-in-out;
- }
+      }
+
+      :host([sticky]) {
+        position: sticky;
+        top: 0;
+      }
 
       .alert {
-        max-height: 258;
+        max-height: 258px;
         display: inline-flex;
         padding: 0px 62px 0px 62px;
         justify-content: space-between; /* to push items to opposite ends */
@@ -96,7 +113,7 @@ export class AlertBlock extends LitElement {
       .alert-date {
         padding: 16px 50px 16px 4px;
         margin: auto;
-        max-width: 150px;
+        width: 150px;
       }
 
       .alert-icon {
@@ -105,33 +122,36 @@ export class AlertBlock extends LitElement {
         padding: 20px 38px 20px 12px;
         flex-grow: 0;
         flex-shrink: 0;
-        stroke: var(--dark-text-color);
+        stroke: var(--foreground-text-color);
         z-index: 1;
       }
 
       .alert-message {
-        max-width: 930px;
+        width: 910px;
+        max-width: 910px;
         min-width: 153px;
-        max-height: 258px;
+        max-height: 185px;
         margin: auto;
         font-family: "Roboto-Bold", sans-serif;
         font-style: italic;
         font-size: 18px;
         letter-spacing: 0.5px;
         line-height: 20px;
-        color: var(--dark-text-color);
+        color: var(--foreground-text-color);
         text-size-adjust: 100%;
         z-index: 1;
+        overflow: hidden;
       }
 
       .alert-info {
         position: relative;
         z-index: 1;
-        color: var(--dark-text-color);
+        color: var(--foreground-text-color);
       }
 
       .alert-button {
         padding: 36px 0px 0px 48px;
+        float: right;
       }
 
       .btn {
@@ -142,14 +162,8 @@ export class AlertBlock extends LitElement {
         font-weight: 700;
         letter-spacing: 0.03rem;
         font-size: 16px;
-        color: #ffffff;
+        color: var(--background-text-color);
         z-index: 1;
-      }
-
-      .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%;
       }
     `;
   }
@@ -191,21 +205,22 @@ export class AlertBlock extends LitElement {
                 </g>
               </g>
             </svg>
-            <p class="alert-message">
-            ${this.message}
-              <a href= ${this.link} class="alert-info">
-                PENN STATE NEWS</a
-              >
-            </p>
+            <div class="alert-message">
+              <slot>${this.message} </slot>
+              <a href=${this.link} class="alert-info"> PENN STATE NEWS</a>
+            </div>
           </div>
           <div class="alert-button">
-            <button class="btn" ?active="${this.open}">🞬CLOSE</button>
+            <button class="btn" @click=${this.toggleButton}>🞬CLOSE</button>
           </div>
         </div>
       </div>
     `;
   }
 
+  toggleButton(){
+    this.close = !this.close;
+  }
   static get properties() {
     return {
       close: { type: Boolean, reflect: true },
