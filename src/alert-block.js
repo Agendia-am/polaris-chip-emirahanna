@@ -7,7 +7,7 @@ export class AlertBlock extends LitElement {
 
   constructor() {
     super();
-    this.close = false;
+    this.close = (localStorage.getItem("isClosed") == "true"? true : false);
     this.sticky = false;
     this.date = "NOVEMBER 17, 2023 12:00 AM";
     this.status = "warning";
@@ -32,21 +32,21 @@ export class AlertBlock extends LitElement {
         font-weight: 700;
         letter-spacing: 0.5px;
         line-height: 20px;
-        transition: 200ms 250ms all ease-in-out;
+        transition: 200ms 200ms all ease-in-out;
       }
 
-      :host([status="alert"]){
+      :host([status="alert"]) {
         --foreground-color: #bf3026;
         --background-color: #000000;
         --foreground-text-color: #ffffff;
-        --background-text-color: #000321;
+        --background-text-color: #ffffff;
       }
 
-      :host([status="notice"]){
+      :host([status="notice"]) {
         --foreground-color: lightblue;
         --background-color: blue;
         --foreground-text-color: #ffffff;
-        --background-text-color: #000321;
+        --background-text-color: #ffffff;
       }
 
       :host([sticky]) {
@@ -56,7 +56,7 @@ export class AlertBlock extends LitElement {
 
       :host([close]) {
         height: 50px;
-        transition: all .6s linear;
+        transition: all 200ms 200ms linear;
         background-color: var(--foreground-color);
       }
 
@@ -120,10 +120,15 @@ export class AlertBlock extends LitElement {
         max-width: 46px;
         max-height: 46px;
         padding: 20px 38px 20px 12px;
-        flex-grow: 0;
-        flex-shrink: 0;
         stroke: var(--foreground-text-color);
         z-index: 1;
+      }
+
+      .alert-icon.closed {
+        min-height: 30px;
+        min-width: 30px;
+        margin: auto;
+        background-color: red;
       }
 
       .alert-message {
@@ -150,7 +155,7 @@ export class AlertBlock extends LitElement {
       }
 
       .alert-button {
-        padding: 36px 0px 0px 48px;
+        padding: 1%;
         float: right;
       }
 
@@ -169,12 +174,12 @@ export class AlertBlock extends LitElement {
   }
 
   render() {
+    const msg = !(this.close)?  this.message : "TEST CAMPUS ALERT";
     return html`
       <div class="alert">
         <div class="alert-date">
           <p>${this.date}</p>
         </div>
-        <!--<div class="alert-left-angle"></div>-->
         <div class="paralellogram">
           <div class="alert-content">
             <!-- The Exclamation Mark Vector-->
@@ -206,8 +211,7 @@ export class AlertBlock extends LitElement {
               </g>
             </svg>
             <div class="alert-message">
-              <slot>${this.message} </slot>
-              <a href=${this.link} class="alert-info"> PENN STATE NEWS</a>
+              <slot> ${msg} </slot>
             </div>
           </div>
           <div class="alert-button">
@@ -218,7 +222,17 @@ export class AlertBlock extends LitElement {
     `;
   }
 
-  toggleButton(){
+  updated(changedProperties) {
+    if (changedProperties.has("close")) {
+      if (this.close) {
+        localStorage.setItem("isClosed", (this.close).toString());
+      }
+      else{
+        localStorage.removeItem("isClosed");
+      }
+    }
+  }
+  toggleButton() {
     this.close = !this.close;
   }
   static get properties() {

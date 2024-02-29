@@ -89,7 +89,7 @@ export class MyCard extends LitElement {
         height: 50px;
       }
 
-      .img{
+      .image{
         width: 300px;
         height: 200px;
         border-radius: 15px;
