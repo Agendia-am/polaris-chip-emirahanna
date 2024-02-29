@@ -23,7 +23,7 @@ export class AlertBlock extends LitElement {
         --background-color: #bf8226;
         --foreground-text-color: #000321;
         --background-text-color: #ffffff;
-        background-color: var(--background-color);
+        background: var(--background-color);
         width: 100%;
         height: 185px;
         display: inline-flex;
@@ -58,13 +58,27 @@ export class AlertBlock extends LitElement {
       :host([close]) {
         height: 50px;
         transition: all 200ms 200ms linear;
-        background-color: var(--foreground-color);
+        background: var(--foreground-color);
       }
 
       :host([sticky]) {
         position: sticky;
         top: 0;
       }
+
+      :host(:not([close])) .alert-content::before {
+        display: inline-flex;
+        content: " ";
+        width: 0;
+        height: 0;
+        position: absolute;
+        bottom: 2rem;
+        left: -0.8rem;
+        border-left: 35px solid transparent;
+        border-right: 0px solid transparent;
+        border-bottom: 30px solid var(--foreground-color);
+      }
+
 
       .alert {
         max-height: 258px;
@@ -76,19 +90,6 @@ export class AlertBlock extends LitElement {
       .alert-content {
         display: inline-flex;
         position: relative;
-      }
-
-      .alert-content::before {
-        display: inline-flex;
-        content: " ";
-        width: 0;
-        height: 0;
-        position: absolute;
-        bottom: 2rem;
-        left: -0.8rem;
-        border-left: 35px solid transparent;
-        border-right: 0px solid transparent;
-        border-bottom: 30px solid var(--foreground-color);
       }
 
       .paralellogram {
@@ -107,7 +108,7 @@ export class AlertBlock extends LitElement {
         height: 100%;
         max-height: 258px;
         transform: skew(20deg);
-        background-color: var(--foreground-color);
+        background: var(--foreground-color);
         }
 
       .alert-date {
@@ -137,7 +138,6 @@ export class AlertBlock extends LitElement {
         min-width: 153px;
         max-height: 185px;
         margin: auto;
-        font-family: "Roboto-Bold", sans-serif;
         font-style: italic;
         font-size: 18px;
         letter-spacing: 0.5px;
@@ -164,6 +164,7 @@ export class AlertBlock extends LitElement {
         letter-spacing: 0.03rem;
         font-size: 16px;
         color: var(--background-text-color);
+        
       }
     `;
   }
