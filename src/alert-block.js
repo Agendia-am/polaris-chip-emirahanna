@@ -32,7 +32,7 @@ export class AlertBlock extends LitElement {
         font-weight: 700;
         letter-spacing: 0.5px;
         line-height: 20px;
-        transition: 200ms 200ms all ease-in-out;
+        transition: all 200ms 200ms ease-in-out;
       }
 
       :host([status="alert"]) {
@@ -52,6 +52,7 @@ export class AlertBlock extends LitElement {
       :host([sticky]) {
         position: sticky;
         top: 0;
+        z-index: 1;
       }
 
       :host([close]) {
@@ -107,8 +108,7 @@ export class AlertBlock extends LitElement {
         max-height: 258px;
         transform: skew(20deg);
         background-color: var(--foreground-color);
-        z-index: 0; /* Makes it so that I can have order in the divs? Basically sends it to the back*/
-      }
+        }
 
       .alert-date {
         padding: 16px 50px 16px 4px;
@@ -120,15 +120,15 @@ export class AlertBlock extends LitElement {
         max-width: 46px;
         max-height: 46px;
         padding: 20px 38px 20px 12px;
+        color: var(--foreground-text-color);
         stroke: var(--foreground-text-color);
-        z-index: 1;
+
       }
 
       .alert-icon.closed {
         min-height: 30px;
         min-width: 30px;
         margin: auto;
-        background-color: red;
       }
 
       .alert-message {
@@ -144,13 +144,10 @@ export class AlertBlock extends LitElement {
         line-height: 20px;
         color: var(--foreground-text-color);
         text-size-adjust: 100%;
-        z-index: 1;
         overflow: hidden;
       }
 
       .alert-info {
-        position: relative;
-        z-index: 1;
         color: var(--foreground-text-color);
       }
 
@@ -163,12 +160,10 @@ export class AlertBlock extends LitElement {
         border: none;
         background-color: transparent;
         display: inline-flex;
-        position: relative;
         font-weight: 700;
         letter-spacing: 0.03rem;
         font-size: 16px;
         color: var(--background-text-color);
-        z-index: 1;
       }
     `;
   }
