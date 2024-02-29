@@ -174,11 +174,12 @@ export class AlertBlock extends LitElement {
   }
 
   render() {
-    const msg = !(this.close)?  this.message : "TEST CAMPUS ALERT";
+    const msg = this.close? "TEST CAMPUS ALERT" :  this.message ;
+    const dt = this.close? "" :  this.date;
     return html`
       <div class="alert">
         <div class="alert-date">
-          <p>${this.date}</p>
+          <p>${dt}</p>
         </div>
         <div class="paralellogram">
           <div class="alert-content">
