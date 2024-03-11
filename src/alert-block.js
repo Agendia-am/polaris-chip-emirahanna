@@ -171,6 +171,8 @@ export class AlertBlock extends LitElement {
         color: var(--background-text-color);
         
       }
+
+    
     `;
   }
 
@@ -178,6 +180,7 @@ export class AlertBlock extends LitElement {
     /* Create variables that have specific values depending if the close property is true or false*/
     const msg = this.close? "TEST CAMPUS ALERT" :  this.message ;
     const dt = this.close? "" :  this.date;
+    const button = this.close? "⌵" : "🞬CLOSE";
     return html`
       <div class="alert">
         <div class="alert-date">
@@ -219,7 +222,7 @@ export class AlertBlock extends LitElement {
         </div>
       </div>
       <div class="alert-button">
-        <button class="btn" @click=${this.toggleButton}>🞬CLOSE</button>
+        <button class="btn" @click=${this.toggleButton}>${button}</button>
       </div>
     </div>
   `;
@@ -238,6 +241,7 @@ export class AlertBlock extends LitElement {
   }
   toggleButton() {
     this.close = !this.close;
+    this.shadowRoot.querySelector('.btn').focus()
   }
   static get properties() {
     return {
