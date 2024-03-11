@@ -171,7 +171,6 @@ export class AlertBlock extends LitElement {
         color: var(--background-text-color);
         
       }
-
     
     `;
   }
