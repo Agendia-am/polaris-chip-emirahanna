@@ -68,7 +68,9 @@
           rgba(251, 7, 217, 1) 90%,
           rgba(255, 0, 0, 1) 100%
         );
-        --foreground-color: white;
+        --foreground-color: url(media/bg.png);
+        --background-text-color: #f1f1f1;
+        --foreground-text-color: yellow;
         font-family: "Comic Neue", sans-serif;
         font-weight: 700;
         font-style: italic;
@@ -107,7 +109,6 @@
   <body>
     <alert-block></alert-block>
     <alert-block
-      sticky="true"
       status="alert"
       date="VERY REALISTIC DATE THIS IS INDEED A DATE"
       message="How much wood could a woodchuck chuck if a woodchuck could chuck wood"
@@ -115,12 +116,15 @@
     <alert-block
       status="notice"
       date="what is today"
-      message="what if you had it all, nobody to call maybe then you'd call me"
+      message="and the universe said you are not separate from every other thing
+      and the universe said you are the universe tasting itself, talking to itself, reading its own code
+      and the universe said I love you because you are love."
     ></alert-block>
     <alert-block
       id="april-fools"
-      message="something something funny this is totally intentional not a bug or anything"
-    ></alert-block>
+      sticky="true"
+      date="ẏ̶̧ô̴̩ǘ̵̯ ̵̋͜ḧ̷́ͅa̴̹̓v̴͎̒e̸̠͋ ̴̩̈́i̶̱͂n̴̜̿v̴̝̄o̷̝͆ķ̷̆e̶͕͠d̵̛̟ ̷͇͂t̵̫̐h̵̭̊e̶̫͑ ̴̙̾w̴͕̄r̸̟͐a̴̰̓ț̷̈́h̸̹̄ ̶̝̽o̵̲͝f̴̧̀ ̴̟̈́t̶̗͝h̶͙̋e̶̜̚ ̴̥͗h̵̠́e̸̮͘ȃ̷̘v̴͔̉ȇ̵͈n̴̨̒s̶̨̿"
+    ><em>i terrify you? wonderful</em></alert-block>
     <h1>counter-app</h1>
     <!-- 4 Tests. 1 default and 3 with values supplied -->
     <counter-app></counter-app>
