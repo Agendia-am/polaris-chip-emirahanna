@@ -180,7 +180,7 @@ export class AlertBlock extends LitElement {
     /* Create variables that have specific values depending if the close property is true or false*/
     const msg = this.close? "TEST CAMPUS ALERT" :  this.message ;
     const dt = this.close? "" :  this.date;
-    const button = this.close? "⌵" : "🞬CLOSE";
+    const button = this.close? "V" : "🞬CLOSE";
     return html`
       <div class="alert">
         <div class="alert-date">
