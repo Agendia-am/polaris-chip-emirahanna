@@ -43,7 +43,7 @@ export class MyCard extends LitElement {
         width: 290px;
         max-height: 500px;
         padding: 24px;
-        background-color: var(--card-background-color);
+        background: var(--card-background-color);
         border-radius: 8px;
       }
 
