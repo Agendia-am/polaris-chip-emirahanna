@@ -7,11 +7,11 @@ export class HaxcmsPartyUi extends DDD {
     return "haxcms-party-ui";
   }
 
-  constructor(){
+  constructor() {
     super();
     /* idk how to get the user's handle so it's my username as a default for now */
     /* TODO: can i make the array size change based on how many users i have? would need to create a new list every time we add it then right?*/
-    this.party = ["ezy5092", "ezy5092", "ezy5092", "ezy5092", "ezy5092"];
+    this.party = [];
   }
 
   static get styles() {
@@ -26,23 +26,26 @@ export class HaxcmsPartyUi extends DDD {
           padding: 20px;
         }
         .button-panel {
-        display: flex;
+          display: flex;
         }
-
       `,
     ];
   }
 
   render() {
     return html`
-    <confetti-container id="confetti">
-      <div class="container">
-        <div class="button-panel">
-        <input type="text" class="search-input" placeholder="Search party member"/>
-          <button class="add-button">Add</button>
-          <button>Remove</button>
+      <confetti-container id="confetti">
+        <div class="container">
+          <div class="button-panel">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search party member"
+            />
+            <button class="add-button">Add</button>
+            <button class="remove-button">Remove</button>
           </div>
-    
+
           <div>
             <rpg-character walking seed=${this.party[0]}></rpg-character>
             <rpg-character walking seed=${this.party[1]}></rpg-character>
@@ -50,42 +53,36 @@ export class HaxcmsPartyUi extends DDD {
             <rpg-character walking seed=${this.party[3]}></rpg-character>
             <rpg-character walking seed=${this.party[4]}></rpg-character>
           </div>
-          <button @click="${this.makeItRain}" >Save Party Members</button>
-
-          </div>
-
-          </confetti-container>
+          <button class="save-button" @click="${this.makeItRain}">Save Party Members</button>
+        </div>
+      </confetti-container>
     `;
   }
 
-  addItem(){
+  addItem() {
     input = document.querySelector(".search-input").value;
-    this.item = {...this.item, item}
-
-
+    this.item = { ...this.item, item };
   }
 
-  displayParty(){
+  displayParty() {
     /* map your party members here. return the full array of rpg characters with seeds */
   }
 
-  
   makeItRain() {
-  import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
-    (module) => {
-      setTimeout(() => {
-        this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
-      }, 0);
-    }
-  );
-}
+    import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+      (module) => {
+        setTimeout(() => {
+          this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+        }, 0);
+      }
+    );
+  }
 
   static get properties() {
     return {
-      party: { type: String, reflect: true},
+      party: { type: String, reflect: true },
     };
   }
 }
 
-globalThis.customElements.define(HaxcmsPartyUi.tag, HaxcmsPartyUi); 
-
+globalThis.customElements.define(HaxcmsPartyUi.tag, HaxcmsPartyUi);
