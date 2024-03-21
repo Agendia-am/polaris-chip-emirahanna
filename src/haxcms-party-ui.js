@@ -35,6 +35,7 @@ export class HaxcmsPartyUi extends DDD {
 
   render() {
     return html`
+    <confetti-container id="confetti">
       <div class="container">
         <div class="button-panel">
         <input type="text" class="search-input" placeholder="Search party member"/>
@@ -49,9 +50,11 @@ export class HaxcmsPartyUi extends DDD {
             <rpg-character walking seed=${this.party[3]}></rpg-character>
             <rpg-character walking seed=${this.party[4]}></rpg-character>
           </div>
-          <button>Save Party Members</button>
+          <button @click="${this.makeItRain}" >Save Party Members</button>
 
           </div>
+
+          </confetti-container>
     `;
   }
 
@@ -65,6 +68,17 @@ export class HaxcmsPartyUi extends DDD {
   displayParty(){
     /* map your party members here. return the full array of rpg characters with seeds */
   }
+
+  
+  makeItRain() {
+  import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
+    (module) => {
+      setTimeout(() => {
+        this.shadowRoot.querySelector("#confetti").setAttribute("popped", "");
+      }, 0);
+    }
+  );
+}
 
   static get properties() {
     return {
