@@ -49,7 +49,8 @@
       }
       polaris-chip,
       counter-app,
-      my-card {
+      my-card,
+      haxcms-party-ui {
         margin: 16px;
       }
 
@@ -107,6 +108,8 @@
   </head>
 
   <body>
+    <haxcms-party-ui></haxcms-party-ui>
+    <h1>alert-block</h1>
     <alert-block></alert-block>
     <alert-block
       status="alert"
@@ -122,16 +125,15 @@
     ></alert-block>
     <alert-block
       id="april-fools"
-      sticky="true"
       date="ẏ̶̧ô̴̩ǘ̵̯ ̵̋͜ḧ̷́ͅa̴̹̓v̴͎̒e̸̠͋ ̴̩̈́i̶̱͂n̴̜̿v̴̝̄o̷̝͆ķ̷̆e̶͕͠d̵̛̟ ̷͇͂t̵̫̐h̵̭̊e̶̫͑ ̴̙̾w̴͕̄r̸̟͐a̴̰̓ț̷̈́h̸̹̄ ̶̝̽o̵̲͝f̴̧̀ ̴̟̈́t̶̗͝h̶͙̋e̶̜̚ ̴̥͗h̵̠́e̸̮͘ȃ̷̘v̴͔̉ȇ̵͈n̴̨̒s̶̨̿"
-    ><em>i terrify you? wonderful</em></alert-block>
+      ><em>i terrify you? wonderful</em></alert-block
+    >
     <h1>counter-app</h1>
     <!-- 4 Tests. 1 default and 3 with values supplied -->
     <counter-app></counter-app>
     <counter-app counter="16" min="10" max="25"></counter-app>
     <counter-app counter="1600" min="1598" max="1602"></counter-app>
     <counter-app counter="17" min="16" max="22"></counter-app>
-
     <h1>polaris-chip</h1>
     <polaris-chip></polaris-chip>
     <polaris-chip></polaris-chip>
@@ -197,6 +199,7 @@
     <script type="module" src="./src/my-card.js"></script>
     <script type="module" src="./src/counter-app.js"></script>
     <script type="module" src="./src/alert-block.js"></script>
+    <script type="module" src="./src/haxcms-party-ui.js"></script>
   </body>
 
   <script>
