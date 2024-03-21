@@ -11,7 +11,7 @@ export class HaxcmsPartyUi extends DDD {
     super();
     /* idk how to get the user's handle so it's my username as a default for now */
     /* TODO: can i make the array size change based on how many users i have? would need to create a new list every time we add it then right?*/
-    this.party = ["ezy5092"];
+    this.party = ["ezy5092", "ezy5092", "ezy5092", "ezy5092", "ezy5092"];
   }
 
   static get styles() {
