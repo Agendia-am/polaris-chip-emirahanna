@@ -19,6 +19,7 @@ export class HaxcmsPartyUi extends DDD {
       super.styles,
       css`
         :host {
+          
           display: flex;
         }
         .container {
@@ -27,6 +28,12 @@ export class HaxcmsPartyUi extends DDD {
         }
         .button-panel {
           display: flex;
+        }
+
+        button{
+          font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
         }
       `,
     ];
@@ -65,8 +72,10 @@ export class HaxcmsPartyUi extends DDD {
   }
 
   displayParty() {
-    /* map your party members here. return the full array of rpg characters with seeds */
-  }
+    $
+
+}
+
 
   makeItRain() {
     import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
