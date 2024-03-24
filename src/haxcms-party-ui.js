@@ -18,33 +18,34 @@ export class HaxcmsPartyUi extends DDD {
     return [
       super.styles,
       css`
-        :host {
-          display: flex;
-        }
-        .container {
-          background-color: #f2f2f2;
-          padding: 20px;
-          
-        }
-        .button-panel {
-          display: flex;
-        }
+      :host {
+        
+        display: center;
+      }
+      .container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        width: 100vh;
+        height: 620px;
+        
+      }
+      .button-panel {
+        display: flex;
+        
+      }
 
-        .party {
-          width: 500px;
-          height: 300px;
-          align-content: center;
-          color: black;
-        }
-
-        button {
-          font-family: "Press Start 2P", system-ui;
-          font-weight: 400;
-          font-style: normal;
-        }
-      `,
-    ];
-  }
+      button{
+        font-family: "Press Start 2P", system-ui;
+font-weight: 500;
+font-style: normal;
+color: blue;
+margin-left: 10px;
+height: 50px;
+border-width: 5px;
+      }
+    `,
+  ];
+}
 
   render() {
     return html`
@@ -76,11 +77,46 @@ export class HaxcmsPartyUi extends DDD {
     `;
   }
 
-  addItem() {
-    input = document.querySelector(".search-input").value;
-    this.party = { ...this.party, item };
+  
+  handleInput(event) {
+    const inputValue = event.target.value;
+    // Remove any characters that are not lowercase letters or numbers (Adam's Notes)
+    const sanitizedValue = inputValue.replace(/[^a-z0-9]/g, '');
+    event.target.value = sanitizedValue.slice(0, 10); // Limit to 10 characters
   }
 
+  addItem() {
+    const input = document.querySelector(".search-input").value;
+    // Validate if input is not empty
+    if (input.trim() !== "") {
+      // Add only if the party size is less than 5
+      if (this.party.length < 5) {
+        // Add to party if input matches criteria
+        if (/^[a-z0-9]{1,10}$/.test(input)) {
+          // Check if the user is already in the party
+          if (!this.party.includes(input)) {
+            // Display confirmation alert
+            const confirmed = window.confirm(
+              `Add ${input} to the party?`
+            );
+            if (confirmed) {
+              this.party = [...this.party, input];
+            }
+          } else {
+            window.alert("User is already in the party.");
+          }
+        } else {
+          window.alert(
+            "Input must contain only lowercase letters and numbers, with no spaces and maximum length of 10 characters."
+          );
+        }
+      } else {
+        window.alert("Party is full.");
+      }
+    } else {
+      window.alert("Input cannot be empty.");
+    }
+  }
   displayItem(item){
     return html`<rpg-character seed="${item}"></rpg-character>`;  
   }
