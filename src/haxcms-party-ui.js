@@ -11,7 +11,7 @@ export class HaxcmsPartyUi extends DDD {
     super();
     /* idk how to get the user's handle so it's my username as a default for now */
     /* TODO: can i make the array size change based on how many users i have? would need to create a new list every time we add it then right?*/
-    this.party = ["ezy5092", "", "", "", ""];
+    this.party = ["ezy5092", "user", "", "", ""];
   }
 
   static get styles() {
@@ -23,7 +23,6 @@ export class HaxcmsPartyUi extends DDD {
         }
         .container {
           background-color: var(--ddd-theme-default-beaverBlue);
-          font-size: var(--ddd-font-size-ml);
           min-width: 100vh;
           height: 620px;
           padding: var(--ddd-spacing-4);
@@ -43,6 +42,7 @@ export class HaxcmsPartyUi extends DDD {
 
         button {
           font-family: "Press Start 2P", system-ui;
+          font-size: var(--ddd-font-size-3xs);
           font-weight: 500;
           color: blue;
           min-width: 150px;
