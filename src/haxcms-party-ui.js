@@ -11,41 +11,55 @@ export class HaxcmsPartyUi extends DDD {
     super();
     /* idk how to get the user's handle so it's my username as a default for now */
     /* TODO: can i make the array size change based on how many users i have? would need to create a new list every time we add it then right?*/
-    this.party = ["ezy5092", "","", "", "",  ];
+    this.party = ["ezy5092", "", "", "", ""];
   }
 
   static get styles() {
     return [
       super.styles,
       css`
-      :host {
-        
-        display: center;
-      }
-      .container {
-        background-color: #f2f2f2;
-        padding: 20px;
-        width: 100vh;
-        height: 620px;
-        
-      }
-      .button-panel {
-        display: flex;
-        
-      }
+        :host {
+          display: center;
+        }
+        .container {
+          background-color: var(--ddd-theme-default-beaverBlue);
+          font-size: var(--ddd-font-size-ml);
+          min-width: 100vh;
+          height: 620px;
+          padding: var(--ddd-spacing-4);
+          color: var(--ddd-theme-default-beaverBlue);
+        }
+        .button-panel {
+          display: flex;
+        }
 
-      button{
-        font-family: "Press Start 2P", system-ui;
-font-weight: 500;
-font-style: normal;
-color: blue;
-margin-left: 10px;
-height: 50px;
-border-width: 5px;
-      }
-    `,
-  ];
-}
+        .search-input {
+          font-family: "Press Start 2P", system-ui;
+          min-width: 150px;
+          margin: var(--ddd-spacing-3);
+          padding: var(--ddd-spacing-6);
+          background-color: var(--ddd-theme-default-slateMaxLight);
+        }
+
+        button {
+          font-family: "Press Start 2P", system-ui;
+          font-weight: 500;
+          color: blue;
+          min-width: 150px;
+          margin: var(--ddd-spacing-3);
+          padding: var(--ddd-spacing-6);
+          border: var(--ddd-border-sm);
+          border-color: var(--ddd-theme-default-nittanyNavy);
+          background-color: var(--ddd-theme-default-roarMaxlight);
+        }
+
+        button:hover {
+          background-color: var(--ddd-theme-default-nittanyNavy);
+          color: var(--ddd-theme-default-roarMaxlight);
+        }
+      `,
+    ];
+  }
 
   render() {
     return html`
@@ -63,12 +77,12 @@ border-width: 5px;
             <button class="remove-button">Remove</button>
           </div>
           <div class="party">
-          <rpg-character seed=${this.party[0]}></rpg-character>
-          <rpg-character seed=${this.party[1]}></rpg-character>
-          <rpg-character seed=${this.party[2]}></rpg-character>
-          <rpg-character seed=${this.party[3]}></rpg-character>
-          <rpg-character seed=${this.party[4]}></rpg-character>
-        </div>
+            <rpg-character seed=${this.party[0]}></rpg-character>
+            <rpg-character seed=${this.party[1]}></rpg-character>
+            <rpg-character seed=${this.party[2]}></rpg-character>
+            <rpg-character seed=${this.party[3]}></rpg-character>
+            <rpg-character seed=${this.party[4]}></rpg-character>
+          </div>
           <button class="save-button" @click="${this.makeItRain}">
             Save Party Members
           </button>
@@ -77,11 +91,10 @@ border-width: 5px;
     `;
   }
 
-  
   handleInput(event) {
     const inputValue = event.target.value;
     // Remove any characters that are not lowercase letters or numbers (Adam's Notes)
-    const sanitizedValue = inputValue.replace(/[^a-z0-9]/g, '');
+    const sanitizedValue = inputValue.replace(/[^a-z0-9]/g, "");
     event.target.value = sanitizedValue.slice(0, 10); // Limit to 10 characters
   }
 
@@ -96,9 +109,7 @@ border-width: 5px;
           // Check if the user is already in the party
           if (!this.party.includes(input)) {
             // Display confirmation alert
-            const confirmed = window.confirm(
-              `Add ${input} to the party?`
-            );
+            const confirmed = window.confirm(`Add ${input} to the party?`);
             if (confirmed) {
               this.party = [...this.party, input];
             }
@@ -117,18 +128,16 @@ border-width: 5px;
       window.alert("Input cannot be empty.");
     }
   }
-  displayItem(item){
-    return html`<rpg-character seed="${item}"></rpg-character>`;  
+  displayItem(item) {
+    return html`<rpg-character seed="${item}"></rpg-character>`;
   }
 
   updateContainer() {
     const container = this.shadowRoot.querySelector(".party");
     this.party.forEach((item) => {
-      (this.displayItem(item));
+      this.displayItem(item);
     });
   }
-
-  
 
   makeItRain() {
     import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
