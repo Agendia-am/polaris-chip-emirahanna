@@ -30,6 +30,11 @@ export class HaxcmsPartyUi extends DDD {
         }
         .button-panel {
           display: flex;
+          margin-left: var(--ddd-spacing-4);;
+        }
+        .party{
+          text-align: center;
+          margin:  var(--ddd-spacing-5);
         }
 
         .search-input {
@@ -47,7 +52,7 @@ export class HaxcmsPartyUi extends DDD {
           color: blue;
           min-width: 150px;
           margin: var(--ddd-spacing-3);
-          padding: var(--ddd-spacing-6);
+          padding: var(--ddd-spacing-5);
           border: var(--ddd-border-sm);
           border-color: var(--ddd-theme-default-nittanyNavy);
           background-color: var(--ddd-theme-default-roarMaxlight);
@@ -56,6 +61,8 @@ export class HaxcmsPartyUi extends DDD {
         button:hover {
           background-color: var(--ddd-theme-default-nittanyNavy);
           color: var(--ddd-theme-default-roarMaxlight);
+          transform: scale(1.1);
+          transition: 0.3s ease-in-out
         }
       `,
     ];
