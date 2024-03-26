@@ -1,7 +1,6 @@
 import "@lrnwebcomponents/rpg-character/rpg-character.js";
 import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
 import { html, css } from "lit";
-import copy from "rollup-plugin-copy";
 
 export class HaxcmsPartyUi extends DDD {
   static get tag() {
