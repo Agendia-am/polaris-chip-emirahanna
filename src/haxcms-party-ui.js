@@ -1,6 +1,7 @@
 import "@lrnwebcomponents/rpg-character/rpg-character.js";
 import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
 import { html, css } from "lit";
+import copy from "rollup-plugin-copy";
 
 export class HaxcmsPartyUi extends DDD {
   static get tag() {
@@ -9,9 +10,16 @@ export class HaxcmsPartyUi extends DDD {
 
   constructor() {
     super();
-    /* idk how to get the user's handle so it's my username as a default for now */
-    /* TODO: can i make the array size change based on how many users i have? would need to create a new list every time we add it then right?*/
-    this.party = ["ezy5092", "user", "", "", ""];
+    /* keydown event for the search bar, using logkey?*/
+    /* make the writing in the sarch bar destaurated */
+    /* make it have sounds when we write */
+    /* make the button have a sound when we click it */
+    /* use in put event */
+    /** tags on th chracters */
+    /* make the characters walk when save party is pressed */
+    /* make the characters walk when add is pressed */
+    this.saved = false;
+    this.party = ["ezy5092", "user", "zpg", "meowmeoweoaok", ""];
   }
 
   static get styles() {
@@ -23,8 +31,7 @@ export class HaxcmsPartyUi extends DDD {
         }
         .container {
           background-color: var(--ddd-theme-default-beaverBlue);
-          min-width: 100vh;
-          height: 620px;
+          height: var(--haxcms-party-ui-container,620px);
           padding: var(--ddd-spacing-4);
           color: var(--ddd-theme-default-beaverBlue);
         }
@@ -33,13 +40,14 @@ export class HaxcmsPartyUi extends DDD {
           margin-left: var(--ddd-spacing-4);;
         }
         .party{
-          text-align: center;
+          display: flex;
           margin:  var(--ddd-spacing-5);
+          color: white; 
         }
 
         .search-input {
           font-family: "Press Start 2P", system-ui;
-          min-width: 150px;
+          min-width: var(--haxcms-party-ui-searchbar, 150px);
           margin: var(--ddd-spacing-3);
           padding: var(--ddd-spacing-6);
           background-color: var(--ddd-theme-default-slateMaxLight);
@@ -62,7 +70,7 @@ export class HaxcmsPartyUi extends DDD {
           background-color: var(--ddd-theme-default-nittanyNavy);
           color: var(--ddd-theme-default-roarMaxlight);
           transform: scale(1.1);
-          transition: 0.3s ease-in-out
+          transition: all 300ms ease-in-out
         }
       `,
     ];
@@ -84,11 +92,8 @@ export class HaxcmsPartyUi extends DDD {
             <button class="remove-button">Remove</button>
           </div>
           <div class="party">
-            <rpg-character seed=${this.party[0]}></rpg-character>
-            <rpg-character seed=${this.party[1]}></rpg-character>
-            <rpg-character seed=${this.party[2]}></rpg-character>
-            <rpg-character seed=${this.party[3]}></rpg-character>
-            <rpg-character seed=${this.party[4]}></rpg-character>
+            ${this.party.map((item) => html`<rpg-character seed=${item}></rpg-character><p>${item}</p>`)}
+          <!-- this is property drilling. not the best idea-->
           </div>
           <button class="save-button" @click="${this.makeItRain}">
             Save Party Members
