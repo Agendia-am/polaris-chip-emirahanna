@@ -17,8 +17,11 @@ export class HaxcmsPartyUi extends DDD {
     /** tags on th chracters */
     /* make the characters walk when save party is pressed */
     /* make the characters walk when add is pressed */
-    this.saved = false;
-    this.party = ["ezy5092", "user", "zpg", "meowmeoweoaok", ""];
+    this.changed = false;
+    this.party =
+      localStorage.getItem("party") != null
+        ? localStorage.getItem("party").split(",")
+        : ["zpg"];
   }
 
   static get styles() {
@@ -29,19 +32,30 @@ export class HaxcmsPartyUi extends DDD {
           display: center;
         }
         .container {
-          background-color: var(--ddd-theme-default-beaverBlue);
-          height: var(--haxcms-party-ui-container,620px);
-          padding: var(--ddd-spacing-4);
+          width: var(--haxcms-party-ui-container, 100vw);
+          padding: 0px var(--ddd-spacing-4);
+          background-color: var(--ddd-theme-default-roarMaxlight);
+        }
+
+        .header{
+          display:inline-flex;
+        }
+
+        .title {
+          font-family: "Press Start 2P", system-ui;
           color: var(--ddd-theme-default-beaverBlue);
         }
+
         .button-panel {
           display: flex;
-          margin-left: var(--ddd-spacing-4);;
+          margin-left: var(--ddd-spacing-4);
         }
-        .party{
-          display: flex;
-          margin:  var(--ddd-spacing-5);
-          color: white; 
+        .party {
+          display: inline-flexbox;
+          max-width: var(--haxcms-party-ui-party-width, 100vw);
+          height: var(--haxcms-party-ui-party-height, 300px);
+          margin: var(--ddd-spacing-5);
+          color: var(--ddd-theme-default-roarMaxlight);
         }
 
         .search-input {
@@ -56,7 +70,6 @@ export class HaxcmsPartyUi extends DDD {
           font-family: "Press Start 2P", system-ui;
           font-size: var(--ddd-font-size-3xs);
           font-weight: 500;
-          color: blue;
           min-width: 150px;
           margin: var(--ddd-spacing-3);
           padding: var(--ddd-spacing-5);
@@ -69,37 +82,70 @@ export class HaxcmsPartyUi extends DDD {
           background-color: var(--ddd-theme-default-nittanyNavy);
           color: var(--ddd-theme-default-roarMaxlight);
           transform: scale(1.1);
-          transition: all 300ms ease-in-out
+          transition: all 300ms ease-in-out;
         }
       `,
     ];
+  }
+
+  deleteData() {
+    localStorage.removeItem("party");
   }
 
   render() {
     return html`
       <confetti-container id="confetti">
         <div class="container">
-          <div class="button-panel">
-            <input
-              type="text"
-              class="search-input"
-              placeholder="Search party member"
-            />
-            <button class="add-button" @click="${this.updateContainer}">
-              Add
-            </button>
-            <button class="remove-button">Remove</button>
+          <div class="header">
+            <h1 class="title">CHOOSE YOUR PARTY</h1>
+            <div class="button-panel">
+              <input
+                type="search"
+                class="search-input"
+                placeholder="Search party member"
+              />
+              <button class="add-button" @click="${this.addUser}">Add</button>
+              <button class="remove-button" @click="${this.remove}">
+                Remove
+              </button>
+            </div>
           </div>
           <div class="party">
-            ${this.party.map((item) => html`<rpg-character seed=${item}></rpg-character><p>${item}</p>`)}
-          <!-- this is property drilling. not the best idea-->
+            ${this.party.map((item) => this.displayItem(item))}
+            <!-- this is property drilling. not the best idea-->
           </div>
-          <button class="save-button" @click="${this.makeItRain}">
+          <button class="save-button" @click="${this.saveData}">
             Save Party Members
           </button>
         </div>
       </confetti-container>
     `;
+  }
+
+  addUser() {
+    /*
+    const searchInput = document.querySelector(".search-input");
+    this.party = [...this.party, searchInput.value.toString()];
+    this.makeItRain();
+    
+    */
+    this.party = [...this.party, null];
+    this.changed = true;
+  }
+
+  saveData() {
+    if (this.changed) {
+      const myArray = this.party.toString();
+      localStorage.setItem("party", myArray);
+      console.log(localStorage.getItem("party").split(","));
+      this.makeItRain();
+    } else {
+      localStorage.removeItem("party");
+    }
+  }
+
+  remove() {
+    this.changed = false;
   }
 
   handleInput(event) {
@@ -143,13 +189,6 @@ export class HaxcmsPartyUi extends DDD {
     return html`<rpg-character seed="${item}"></rpg-character>`;
   }
 
-  updateContainer() {
-    const container = this.shadowRoot.querySelector(".party");
-    this.party.forEach((item) => {
-      this.displayItem(item);
-    });
-  }
-
   makeItRain() {
     import("@lrnwebcomponents/multiple-choice/lib/confetti-container.js").then(
       (module) => {
@@ -162,8 +201,7 @@ export class HaxcmsPartyUi extends DDD {
 
   static get properties() {
     return {
-      party: { type: String, reflect: true },
-      item: { type: String, reflect: true },
+      party: { type: Array, reflect: true },
     };
   }
 }
