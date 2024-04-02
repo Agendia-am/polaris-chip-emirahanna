@@ -53,7 +53,7 @@ export class HaxcmsPartyUi extends DDD {
           color: var(--ddd-theme-default-beaverBlue);
           margin: 0px 0px 50px 30px;
           text-align: center;
-          animation: blinker 1s linear infinite;
+          animation: blinker 333ms linear infinite;
         }
 
         .button-panel {
@@ -132,6 +132,8 @@ export class HaxcmsPartyUi extends DDD {
 
   render() {
     return html`
+    <audio id="coin-sound" src="media/coin sound.wav" ></audio>
+    <audio id="remove-sound" src="media/remove sound.mp3" ></audio>
       <confetti-container id="confetti">
         <div class="block">
           <h1 class="title">CHOOSE YOUR PARTY</h1>
@@ -170,8 +172,7 @@ export class HaxcmsPartyUi extends DDD {
         if (!this.party.includes(username)) {
           this.party = [...this.party, username];
           this.toggleChanged();
-          var audio = new Audio("media\coin sound.wav");
-          audio.play();
+          this.shadowRoot.getElementById("coin-sound").play();
         } else {
           window.alert("Username is already in the party.");
         }
@@ -195,8 +196,7 @@ export class HaxcmsPartyUi extends DDD {
       localStorage.setItem("party", myArray);
       console.log(localStorage.getItem("party").split(","));
       this.saved = true;
-      var audio = new Audio("media\coin sound.wav");
-      audio.play();
+      this.shadowRoot.getElementById("remove-sound").play();
       this.makeItRain();
     } else {
       localStorage.removeItem("party");
