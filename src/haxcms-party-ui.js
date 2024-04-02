@@ -143,7 +143,7 @@ export class HaxcmsPartyUi extends DDD {
                 placeholder="Search party member..."
               />
               <button class="add-button" @click="${this.addUser}">Add</button>
-              <button class="remove-button" >
+              <button class="remove-button" @click="${this.deleteData}" >
                 Remove
               </button>
             </div>
@@ -195,7 +195,7 @@ export class HaxcmsPartyUi extends DDD {
       localStorage.setItem("party", myArray);
       console.log(localStorage.getItem("party").split(","));
       this.saved = true;
-      var audio = new Audio("media\remove sound.wav");
+      var audio = new Audio("media\coin sound.wav");
       audio.play();
       this.makeItRain();
     } else {
