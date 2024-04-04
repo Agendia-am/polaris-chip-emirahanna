@@ -7,16 +7,20 @@ export class HaxcmsPartyUi extends DDD {
     return "haxcms-party-ui";
   }
 
+  /*
+  HI WILL (Or Dhari, or Donovan, idk Will is usually the one who grades my stuff)
+  QUICK QUESTION. So for some reason my search input, the input html tag one, only works when I make search-input an Id, and not a class.
+  I'm not sure why that is, but it works so I'm not going to question it. I'm just curious if you know why that is.
+  Thank you for your service and time! Stay cool 😎
+  */
+
   constructor() {
     super();
-    /* keydown event for the search bar, using logkey?*/
     /* make the writing in the sarch bar destaurated */
     /* make it have sounds when we write */
     /* make the button have a sound when we click it */
     /* use in put event */
     /** tags on th chracters */
-    /* make the characters walk when save party is pressed */
-    /* make the characters walk when add is pressed */
     this.minPartySize = 5;
     this.changed = false;
     this.saved = false;
@@ -32,7 +36,6 @@ export class HaxcmsPartyUi extends DDD {
       css`
         :host {
           display: center;
-
         }
         .block {
           width: var(--haxcms-party-ui-container, 95vw);
@@ -55,7 +58,7 @@ export class HaxcmsPartyUi extends DDD {
           margin: 0px 0px 50px 30px;
           text-align: center;
           animation: blinker 1.5s linear infinite;
-          text-shadow: 2px 4px 4px rgba(46,91,173,0.6);
+          text-shadow: 2px 4px 4px rgba(46, 91, 173, 0.6);
         }
 
         .button-panel {
@@ -69,13 +72,20 @@ export class HaxcmsPartyUi extends DDD {
           margin: var(--ddd-spacing-5);
           color: var(--ddd-theme-default-roarMaxlight);
           text-align: center;
-      
+          margin: 4px, 4px;
+          padding: 4px;
+          overflow-x: hidden;
+          overflow-y: visible;
+          text-align: justify;
+          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
+            0 5px 0 0 black;
         }
 
         #search-input {
           font-family: "Press Start 2P", system-ui;
           font-size: var(--ddd-font-size-3xs);
-          min-width: 200px;
+          min-width: var(--haxcms-party-ui-search-input-min-width, 20vw);
+          max-width: var(--haxcms-party-ui-search-input-max-width, 60vw);
           margin: var(--ddd-spacing-3);
           padding: var(--ddd-spacing-5);
           background-color: var(--ddd-theme-default-slateMaxLight);
@@ -119,7 +129,8 @@ export class HaxcmsPartyUi extends DDD {
             0 5px 0 0 black;
         }
 
-        button:hover {
+        button:hover,
+        button:focus {
           background-color: var(--ddd-theme-default-keystoneYellow);
           color: var(--ddd-theme-default-potentialMidnight);
         }
@@ -135,8 +146,8 @@ export class HaxcmsPartyUi extends DDD {
 
   render() {
     return html`
-    <audio id="coin-sound" src="media/coin sound.wav" ></audio>
-    <audio id="remove-sound" src="media/remove sound.mp3" ></audio>
+      <audio id="coin-sound" src="media/coin sound.wav"></audio>
+      <audio id="remove-sound" src="media/remove sound.mp3"></audio>
       <confetti-container id="confetti">
         <div class="block">
           <h1 class="title">CHOOSE YOUR PARTY</h1>
@@ -149,7 +160,7 @@ export class HaxcmsPartyUi extends DDD {
                 @keydown="${this.pressEnter}"
               />
               <button class="add-button" @click="${this.addUser}">Add</button>
-              <button class="remove-button" @click="${this.deleteData}" >
+              <button class="remove-button" @click="${this.deleteData}">
                 Remove
               </button>
             </div>
@@ -183,13 +194,12 @@ export class HaxcmsPartyUi extends DDD {
       } else {
         window.alert("Username must be lowercase and numbers only.");
       }
-      this.shadowRoot.getElementById("search-input").value="";
+      this.shadowRoot.getElementById("search-input").value = "";
       this.shadowRoot.getElementById("search-input").focus();
     }
-
   }
 
-  pressEnter(event){
+  pressEnter(event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
       // Cancel the default action, if needed
@@ -219,7 +229,6 @@ export class HaxcmsPartyUi extends DDD {
       localStorage.removeItem("party");
     }
   }
-
 
   displayItem(item) {
     if (this.saved) {
