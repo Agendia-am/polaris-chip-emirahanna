@@ -7,6 +7,7 @@ export class HaxcmsPartyUi extends DDD {
     return "haxcms-party-ui";
   }
 
+  
   /*
   HI WILL (Or Dhari, or Donovan, idk Will is usually the one who grades my stuff)
   QUICK QUESTION. So for some reason my search input, the input html tag one, only works when I make search-input an Id, and not a class.
@@ -36,6 +37,11 @@ export class HaxcmsPartyUi extends DDD {
       css`
         :host {
           display: center;
+        }
+
+        :host([saved]) {
+          transform: rotate(360deg);
+          transition: transform 1s;
         }
         .block {
           width: var(--haxcms-party-ui-container, 95vw);
@@ -180,8 +186,11 @@ export class HaxcmsPartyUi extends DDD {
   addUser() {
     const input = this.shadowRoot.getElementById("search-input");
     const username = input.value.trim();
+    this.sanitizeInput(username);
+    this.resetSearchInput();
+  }
 
-    /* if the party is less than 5, add the user */
+  sanitizeInput(input) {
     if (username !== "") {
       if (/^[a-z0-9]{1,10}$/.test(username)) {
         if (!this.party.includes(username)) {
@@ -189,14 +198,17 @@ export class HaxcmsPartyUi extends DDD {
           this.toggleChanged();
           this.shadowRoot.getElementById("coin-sound").play();
         } else {
-          window.alert("Username is already in the party.");
+          window.alert(username + " is already in the party.");
         }
       } else {
-        window.alert("Username must be lowercase and numbers only.");
+        window.alert("Username must be lowercase letters and numbers only.");
       }
-      this.shadowRoot.getElementById("search-input").value = "";
-      this.shadowRoot.getElementById("search-input").focus();
     }
+  }
+
+  resetSearchInput() {
+    this.shadowRoot.getElementById("search-input").value = "";
+    this.shadowRoot.getElementById("search-input").focus();
   }
 
   pressEnter(event) {
