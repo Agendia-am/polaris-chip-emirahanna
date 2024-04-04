@@ -24,15 +24,6 @@ export class CounterApp extends LitElement {
         border-radius: 16px;
         display: inline-flex;
         transition: all 250ms 50ms ease-in-out;
-        /*
-        to mess around with later because text gradient looks so cool
-        
-        background: linear-gradient( red, blue);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-
-        */
       }
 
       /* Checks if the value of counter is 18, and changes the text and background color.*/

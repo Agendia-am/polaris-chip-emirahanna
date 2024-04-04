@@ -146,6 +146,7 @@ export class HaxcmsPartyUi extends DDD {
                 type="search"
                 id="search-input"
                 placeholder="Search party member..."
+                @keydown="${this.pressEnter}"
               />
               <button class="add-button" @click="${this.addUser}">Add</button>
               <button class="remove-button" @click="${this.deleteData}" >
@@ -188,6 +189,16 @@ export class HaxcmsPartyUi extends DDD {
 
   }
 
+  pressEnter(event){
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      this.addUser();
+    }
+  }
+
   toggleChanged() {
     this.changed = !this.changed;
   }
@@ -212,7 +223,7 @@ export class HaxcmsPartyUi extends DDD {
 
   displayItem(item) {
     if (this.saved) {
-      return html`<rpg-character walking seed="${item}"></rpg-character>`;
+      return html`<<rpg-character walking seed="${item}"></rpg-character>>`;
     } else {
       return html`<rpg-character seed="${item}"></rpg-character>`;
     }
