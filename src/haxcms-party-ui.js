@@ -23,7 +23,7 @@ export class HaxcmsPartyUi extends DDD {
     this.party =
       localStorage.getItem("party") != null
         ? localStorage.getItem("party").split(",")
-        : ["zpg"];
+        : [];
   }
 
   static get styles() {
@@ -32,6 +32,7 @@ export class HaxcmsPartyUi extends DDD {
       css`
         :host {
           display: center;
+
         }
         .block {
           width: var(--haxcms-party-ui-container, 95vw);
@@ -53,11 +54,12 @@ export class HaxcmsPartyUi extends DDD {
           color: var(--ddd-theme-default-beaverBlue);
           margin: 0px 0px 50px 30px;
           text-align: center;
-          animation: blinker 333ms linear infinite;
+          animation: blinker 1.5s linear infinite;
+          text-shadow: 2px 4px 4px rgba(46,91,173,0.6);
         }
 
         .button-panel {
-          display: flex;
+          display: flexbox;
           margin-left: var(--ddd-spacing-4);
         }
         .party {
@@ -67,6 +69,7 @@ export class HaxcmsPartyUi extends DDD {
           margin: var(--ddd-spacing-5);
           color: var(--ddd-theme-default-roarMaxlight);
           text-align: center;
+      
         }
 
         #search-input {
@@ -179,7 +182,10 @@ export class HaxcmsPartyUi extends DDD {
       } else {
         window.alert("Username must be lowercase and numbers only.");
       }
+      this.shadowRoot.getElementById("search-input").value="";
+      this.shadowRoot.getElementById("search-input").focus();
     }
+
   }
 
   toggleChanged() {
@@ -202,6 +208,7 @@ export class HaxcmsPartyUi extends DDD {
       localStorage.removeItem("party");
     }
   }
+
 
   displayItem(item) {
     if (this.saved) {
