@@ -1,6 +1,7 @@
 import "@lrnwebcomponents/rpg-character/rpg-character.js";
 import { DDD } from "@lrnwebcomponents/d-d-d/d-d-d.js";
 import { html, css } from "lit";
+import { RpgUser } from "./rpg-user";
 
 export class HaxcmsPartyUi extends DDD {
   static get tag() {
@@ -17,11 +18,9 @@ export class HaxcmsPartyUi extends DDD {
   constructor() {
     super();
     /* make the writing in the sarch bar destaurated */
-    /* make it have sounds when we write */
-    /* make the button have a sound when we click it */
-    /* use in put event */
+
     /** tags on th chracters */
-    this.minPartySize = 5;
+    this.index = 0;
     this.changed = false;
     this.saved = false;
     this.party =
@@ -84,6 +83,11 @@ export class HaxcmsPartyUi extends DDD {
           text-align: justify;
           box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
             0 5px 0 0 black;
+        }
+
+        .character {
+          color: var(--ddd-theme-default-wonderPurple);
+          display: inline-flexbox;
         }
 
         #search-input {
@@ -165,14 +169,19 @@ export class HaxcmsPartyUi extends DDD {
                 @keydown="${this.pressEnter}"
               />
               <button class="add-button" @click="${this.addUser}">Add</button>
-              <button class="remove-button" @click="${this.deleteData}">
+              <button class="remove-button" @click="${this.removeUser}">
                 Remove
               </button>
             </div>
             <div class="party">
-              ${this.party.map((item) => this.displayItem(item))}
-              <!-- this is property drilling. not the best idea-->
+            
+              ${this.party.map((item, index) => html` 4=
+              <div class="character" @click="${(e) => this.selectCharacter(e, index)}"></div>
+              ${this.displayItem(item)}
+              `)}
             </div>
+
+
             <button class="save-button" @click="${this.saveData}">
               Save Party Members
             </button>
@@ -198,11 +207,11 @@ export class HaxcmsPartyUi extends DDD {
         window.alert("Username must be lowercase letters and numbers only.");
       }
       this.shadowRoot.getElementById("search-input").value = "";
-      this.shadowRoot.getElementById("search-input").focus();    
+      this.shadowRoot.getElementById("search-input").focus();
       $(".party").animate({
         scrollTop: $(document).height()
       }, "fast");
-      
+
     }
     $(".party").animate({ scrollTop: $(".party > *").height() }, "fast");
   }
@@ -215,6 +224,22 @@ export class HaxcmsPartyUi extends DDD {
       // Trigger the button element with a click
       this.addUser();
     }
+  }
+
+
+  selectCharacter(event, index) {
+    const selectedCharacter = event.target.closest('.rpg-selector');
+    const selectedUserName = selectedCharacter.querySelector('.characterName').innerText;
+
+    // Find index of the selected user in the party array
+    const selectedIndex = this.party.findIndex(user => user === selectedUserName);
+    this.index = selectedIndex;
+  }
+
+  removeUser() {
+    this.party.splice(this.index, 1);
+    this.party = [...this.party];
+    this.shadowRoot.getElementById("remove-sound").play();
   }
 
   toggleChanged() {
@@ -234,16 +259,18 @@ export class HaxcmsPartyUi extends DDD {
       this.shadowRoot.getElementById("remove-sound").play();
       this.makeItRain();
     }
-    else{
+    else {
       window.alert("You need at least 1 party member to save.");
     }
   }
 
   displayItem(item) {
     if (this.saved) {
-      return html`<<rpg-character walking seed="${item}"></rpg-character>>`;
+      return html`<<rpg-character walking seed="${item}"></rpg-character>>
+      <p>${item}</p>`;
     } else {
-      return html`<rpg-character seed="${item}"></rpg-character>`;
+      return html`<rpg-character seed="${item}"></rpg-character>
+      <p>${item}</p>`;
     }
   }
 

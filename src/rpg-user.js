@@ -20,6 +20,18 @@ export class RpgUser extends DDD {
         :host {
           display: center;
         }
+
+        :host:hover{
+          transform: scale(1.1);
+          transition: transform 0.5s;
+          border: 5px solid var(--ddd-theme-default-nittanyNavy);
+        }
+
+        .username {
+          font-family: "Press Start 2P", system-ui;
+          color: var(--ddd-theme-default-beaverBlue);
+          text-align: center;
+        }
       `,
     ];
   }
@@ -32,6 +44,7 @@ export class RpgUser extends DDD {
         seed=${this.name}
       ></rpg-character
       >} else{<rpg-character seed=${this.name}></rpg-character>}
+      <p class="username">${this.name}</p>
     `;
   }
 
