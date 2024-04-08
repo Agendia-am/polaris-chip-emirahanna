@@ -10,7 +10,6 @@ export class RpgUser extends DDD {
   constructor() {
     super();
     this.name = "";
-    this.saved = false;
     this.selected = false;
   }
 
@@ -54,18 +53,10 @@ export class RpgUser extends DDD {
   }
 
   render() {
-    if (this.saved) {
       return html` <div class="character" @click=${this.toggleSelected}  >
           <rpg-character walking seed=${this.name}></rpg-character>
           <p class="username">${this.name}</p>
         </div>`;
-    } else {
-      return html`
-        <div class="character" @click=${this.toggleSelected}>
-          <rpg-character seed=${this.name}></rpg-character>
-          <p class="username">${this.name}</p>
-        </div>`;
-    }
   }
 
   toggleSelected() {
@@ -77,7 +68,6 @@ export class RpgUser extends DDD {
   static get properties() {
     return {
       ...super.properties,
-      saved: { type: Boolean, reflect: true },
       selected: { type: Boolean, reflect: true },
       name: { type: String },
     };

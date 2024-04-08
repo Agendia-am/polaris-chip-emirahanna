@@ -191,19 +191,24 @@ export class HaxcmsPartyUi extends DDD {
   }
 
   addUser() {
+    // Get the value of the input element
     const input = this.shadowRoot.getElementById("search-input");
+    // Trim the value of the input element
     const username = input.value.trim();
+    // Check if the input is not empty
     if (username !== "") {
-      if (/^[a-z0-9]{1,10}$/.test(username)) {
+      // Check if the input is a valid username (lowercase letters and numbers only, 1-15 characters long)
+      if (/^[a-z0-9]{1,15}$/.test(username)) {
         if (!this.party.includes(username)) {
           this.party = [...this.party, username];
           this.toggleChanged();
           this.shadowRoot.getElementById("coin-sound").play();
+          this.saved = false;
         } else {
           window.alert(username + " is already in the party.");
         }
       } else {
-        window.alert("Username must be lowercase letters and numbers only.");
+        window.alert("Username must be:\n\t1.Lowercase letters\n\t2.Numbers only\n\t3.Maximum 15 characters");
       }
       this.shadowRoot.getElementById("search-input").value = "";
       this.shadowRoot.getElementById("search-input").focus();
@@ -218,10 +223,11 @@ export class HaxcmsPartyUi extends DDD {
       event.preventDefault();
       // Trigger the button element with a click
       this.addUser();
-      
+
     }
   }
   selectCharacter(event, index) {
+    // Find the selected user element in the party
     const selectedCharacter = event.target.closest(".characters");
     const selectedUserName = selectedCharacter.querySelector("rpg-user").name;
 
@@ -232,6 +238,7 @@ export class HaxcmsPartyUi extends DDD {
   }
 
   removeUser() {
+    // Remove the selected user from the party array
     this.party.splice(this.index, 1);
     this.party = [...this.party];
     // Access the rpg-user element corresponding to the removed user
@@ -251,13 +258,17 @@ export class HaxcmsPartyUi extends DDD {
 
   saveData() {
     if (this.party.length >= 1) {
+      // Convert the party array to a string and save it to local storage
       const myArray = this.party.toString();
       localStorage.setItem("party", myArray);
-      console.log(localStorage.getItem("party").split(","));
+      console.log(localStorage.getItem("party").split(",")); //testing
+      // Set the saved property to true
       this.saved = true;
-      this.shadowRoot.getElementById("coin-sound").play(); //Play coin sound audio
+      // Play the coin sound audio
+      this.shadowRoot.getElementById("coin-sound").play();
+      // Make it rain confetti
       this.makeItRain();
-      window.alert("Party members saved: " + this.party + "\n" +"You can now close the tab.");
+      window.alert("Party members saved: " + this.party + "\n" + "You can now close the tab.");
     }
     else {
       window.alert("You need at least 1 party member to save.");
@@ -265,7 +276,8 @@ export class HaxcmsPartyUi extends DDD {
   }
 
   displayItem(item) {
-    return html`<rpg-user name=${item} saved=${this.saved}></rpg-user>`;
+    // Return the rpg-user element with the name attribute set to the item
+    return html`<rpg-user name=${item}></rpg-user>`;
   }
 
   makeItRain() {
