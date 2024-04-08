@@ -218,6 +218,7 @@ export class HaxcmsPartyUi extends DDD {
       event.preventDefault();
       // Trigger the button element with a click
       this.addUser();
+      
     }
   }
   selectCharacter(event, index) {
