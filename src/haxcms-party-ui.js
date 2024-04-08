@@ -42,23 +42,23 @@ export class HaxcmsPartyUi extends DDD {
           transition: transform 1s;
         }
         .block {
-          width: var(--haxcms-party-ui-container, 95vw);
+          width: var(--haxcms-party-ui-container, 96vw);
           padding: var(--ddd-spacing-6);
-          background-color: var(--ddd-theme-default-roarMaxlight);
+          background-color: var(--ddd-theme-default-potentialMidnight);
         }
 
         .container {
           margin: var(--ddd-spacing-4);
           padding: var(--ddd-spacing-6);
           border: 10px solid var(--ddd-theme-default-nittanyNavy);
-          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
-            0 5px 0 0 black;
+          box-shadow: -5px 0 0 0 var(--ddd-theme-default-beaverBlue), 5px 0 0 0 var(--ddd-theme-default-beaverBlue), 0 -5px 0 0 var(--ddd-theme-default-beaverBlue),
+            0 5px 0 0 var(--ddd-theme-default-beaverBlue);
         }
 
         .title {
           font-family: "Press Start 2P", system-ui;
           background-color: (var(--ddd-theme-default-roarMaxlight), white);
-          color: var(--ddd-theme-default-beaverBlue);
+          color: var(--ddd-theme-default-keystoneYellow);
           margin: 0px 0px 50px 30px;
           text-align: center;
           animation: blinker 1.5s linear infinite;
@@ -81,13 +81,14 @@ export class HaxcmsPartyUi extends DDD {
           overflow-x: hidden;
           overflow-y: visible;
           text-align: justify;
-          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
-            0 5px 0 0 black;
+          box-shadow: -5px 0 0 0 var(--ddd-theme-default-beaverBlue), 5px 0 0 0 var(--ddd-theme-default-beaverBlue), 0 -5px 0 0 var(--ddd-theme-default-beaverBlue),
+            0 5px 0 0 var(--ddd-theme-default-beaverBlue);
         }
 
-        .character {
+        .characters {
           color: var(--ddd-theme-default-wonderPurple);
-          display: inline-flexbox;
+          display: inline-flex;
+          flex-wrap: wrap;
         }
 
         #search-input {
@@ -99,8 +100,8 @@ export class HaxcmsPartyUi extends DDD {
           padding: var(--ddd-spacing-5);
           background-color: var(--ddd-theme-default-slateMaxLight);
           color: var(--ddd-theme-default-wonderPurple);
-          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
-            0 5px 0 0 black;
+          box-shadow: -5px 0 0 0 var(--ddd-theme-default-coalyGray), 5px 0 0 0 var(--ddd-theme-default-coalyGray), 0 -5px 0 0 var(--ddd-theme-default-coalyGray),
+            0 5px 0 0 var(--ddd-theme-default-coalyGray);
         }
 
         .add-button {
@@ -109,10 +110,10 @@ export class HaxcmsPartyUi extends DDD {
           min-width: 150px;
           margin: var(--ddd-spacing-3);
           padding: var(--ddd-spacing-5);
-          background-color: var(--ddd-theme-default-futureLime);
+          background-color: var(--ddd-theme-default-keystoneYellow);
           color: var(--ddd-theme-default-wonderPurple);
-          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
-            0 5px 0 0 black;
+          box-shadow: -5px 0 0 0 var(--ddd-theme-default-coalyGray), 5px 0 0 0 var(--ddd-theme-default-coalyGray), 0 -5px 0 0 var(--ddd-theme-default-coalyGray),
+            0 5px 0 0 var(--ddd-theme-default-coalyGray);
         }
 
         .remove-button {
@@ -123,8 +124,8 @@ export class HaxcmsPartyUi extends DDD {
           padding: var(--ddd-spacing-5);
           background-color: var(--ddd-theme-default-original87Pink);
           color: var(--ddd-theme-default-slateMaxLight);
-          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
-            0 5px 0 0 black;
+          box-shadow: -5px 0 0 0 var(--ddd-theme-default-coalyGray), 5px 0 0 0 var(--ddd-theme-default-coalyGray), 0 -5px 0 0 var(--ddd-theme-default-coalyGray),
+            0 5px 0 0 var(--ddd-theme-default-coalyGray);
         }
         .save-button {
           font-family: "Press Start 2P", system-ui;
@@ -134,13 +135,13 @@ export class HaxcmsPartyUi extends DDD {
           padding: var(--ddd-spacing-5);
           background-color: var(--ddd-theme-default-link);
           color: var(--ddd-theme-default-slateMaxLight);
-          box-shadow: -5px 0 0 0 black, 5px 0 0 0 black, 0 -5px 0 0 black,
-            0 5px 0 0 black;
+          box-shadow: -5px 0 0 0 var(--ddd-theme-default-coalyGray), 5px 0 0 0 var(--ddd-theme-default-coalyGray), 0 -5px 0 0 var(--ddd-theme-default-coalyGray),
+            0 5px 0 0 var(--ddd-theme-default-coalyGray);
         }
 
         button:hover,
         button:focus {
-          background-color: var(--ddd-theme-default-keystoneYellow);
+          background-color: var(--ddd-theme-default-roarMaxlight);
           color: var(--ddd-theme-default-potentialMidnight);
         }
 
@@ -174,14 +175,12 @@ export class HaxcmsPartyUi extends DDD {
               </button>
             </div>
             <div class="party">
-            
-              ${this.party.map((item, index) => html` 4=
-              <div class="character" @click="${(e) => this.selectCharacter(e, index)}"></div>
+              ${this.party.map((item, index) => html`
+              <div class="characters" @click="${(e) => this.selectCharacter(e, index)}">
               ${this.displayItem(item)}
+            </div>
               `)}
             </div>
-
-
             <button class="save-button" @click="${this.saveData}">
               Save Party Members
             </button>
@@ -208,12 +207,8 @@ export class HaxcmsPartyUi extends DDD {
       }
       this.shadowRoot.getElementById("search-input").value = "";
       this.shadowRoot.getElementById("search-input").focus();
-      $(".party").animate({
-        scrollTop: $(document).height()
-      }, "fast");
 
     }
-    $(".party").animate({ scrollTop: $(".party > *").height() }, "fast");
   }
 
   pressEnter(event) {
@@ -225,15 +220,14 @@ export class HaxcmsPartyUi extends DDD {
       this.addUser();
     }
   }
-
-
   selectCharacter(event, index) {
-    const selectedCharacter = event.target.closest('.rpg-selector');
-    const selectedUserName = selectedCharacter.querySelector('.characterName').innerText;
+    const selectedCharacter = event.target.closest(".characters");
+    const selectedUserName = selectedCharacter.querySelector("rpg-user").name;
 
     // Find index of the selected user in the party array
     const selectedIndex = this.party.findIndex(user => user === selectedUserName);
     this.index = selectedIndex;
+    console.log(this.index + " " + selectedUserName);
   }
 
   removeUser() {
@@ -265,13 +259,7 @@ export class HaxcmsPartyUi extends DDD {
   }
 
   displayItem(item) {
-    if (this.saved) {
-      return html`<<rpg-character walking seed="${item}"></rpg-character>>
-      <p>${item}</p>`;
-    } else {
-      return html`<rpg-character seed="${item}"></rpg-character>
-      <p>${item}</p>`;
-    }
+    return html`<rpg-user name=${item} saved=${this.saved}></rpg-user>`;
   }
 
   makeItRain() {

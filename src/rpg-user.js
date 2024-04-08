@@ -11,47 +11,75 @@ export class RpgUser extends DDD {
     super();
     this.name = "";
     this.saved = false;
+    this.selected = false;
   }
+
 
   static get styles() {
     return [
       super.styles,
       css`
         :host {
-          display: center;
+          display: inline-block;
+          text-align: center;
+          min-width: 17vw;
+          max-width: 17vw;
+          margin: var(--ddd-spacing-4, 20px);
         }
 
-        :host:hover{
+        :host([selected]) {
+          display: inline-block;
+          text-align: center;
+          min-width: 17vw;
+          max-width: 17vw;
+          margin: var(--ddd-spacing-4, 20px);
           transform: scale(1.1);
-          transition: transform 0.5s;
-          border: 5px solid var(--ddd-theme-default-nittanyNavy);
+          border: 2px solid var(--ddd-theme-default-slateMaxLight);
+          box-shadow: 10px var(--ddd-theme-default-slateMaxLight);
+        }
+
+        .character:hover{
+          transform: scale(1.1);
+          transition: transform 300ms all ease-in-out;
         }
 
         .username {
           font-family: "Press Start 2P", system-ui;
-          color: var(--ddd-theme-default-beaverBlue);
+          color: var(--ddd-theme-default-slateMaxLight);
           text-align: center;
+          overflow-x: hidden;
         }
       `,
     ];
   }
 
   render() {
-    return html`
-      if(${this.saved}) {
-        <rpg-character
-        walking
-        seed=${this.name}
-      ></rpg-character
-      >} else{<rpg-character seed=${this.name}></rpg-character>}
-      <p class="username">${this.name}</p>
-    `;
+    if (this.saved) {
+      return html` <div class="character" @click=${this.toggleSelected}  >
+          <rpg-character walking seed=${this.name}></rpg-character>
+          <p class="username">${this.name}</p>
+        </div>`;
+    } else {
+      return html`
+        <div class="character" @click=${this.toggleSelected}>
+          <rpg-character seed=${this.name}></rpg-character>
+          <p class="username">${this.name}</p>
+        </div>`;
+    }
   }
+
+  toggleSelected() {
+    this.selected = !this.selected;
+  }
+  
+
 
   static get properties() {
     return {
       ...super.properties,
       saved: { type: Boolean, reflect: true },
+      selected: { type: Boolean, reflect: true },
+      name: { type: String },
     };
   }
 }
