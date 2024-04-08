@@ -156,8 +156,8 @@ export class HaxcmsPartyUi extends DDD {
 
   render() {
     return html`
-      <audio id="coin-sound" src="media/coin sound.wav"></audio>
-      <audio id="remove-sound" src="media/remove sound.mp3"></audio>
+      <audio id="coin-sound" src="./media/coin sound.wav"></audio>
+      <audio id="remove-sound" src="./media/remove sound.mp3"></audio>
       <confetti-container id="confetti">
         <div class="block">
           <h1 class="title">CHOOSE YOUR PARTY</h1>
@@ -255,7 +255,7 @@ export class HaxcmsPartyUi extends DDD {
       localStorage.setItem("party", myArray);
       console.log(localStorage.getItem("party").split(","));
       this.saved = true;
-      this.shadowRoot.getElementById("remove-sound").play();
+      this.shadowRoot.getElementById("coin-sound").play(); //Play coin sound audio
       this.makeItRain();
       window.alert("Party members saved: " + this.party + "\n" +"You can now close the tab.");
     }
