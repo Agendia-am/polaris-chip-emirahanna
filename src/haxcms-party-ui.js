@@ -233,6 +233,10 @@ export class HaxcmsPartyUi extends DDD {
   removeUser() {
     this.party.splice(this.index, 1);
     this.party = [...this.party];
+    // Access the rpg-user element corresponding to the removed user
+    const removedUserElement = this.shadowRoot.querySelectorAll("rpg-user")[this.index];
+    // Set its selected property to false
+    removedUserElement.selected = false;
     this.shadowRoot.getElementById("remove-sound").play();
   }
 
@@ -252,6 +256,7 @@ export class HaxcmsPartyUi extends DDD {
       this.saved = true;
       this.shadowRoot.getElementById("remove-sound").play();
       this.makeItRain();
+      window.alert("Party members saved: " + this.party + "\n" +"You can now close the tab.");
     }
     else {
       window.alert("You need at least 1 party member to save.");
