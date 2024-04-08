@@ -156,8 +156,8 @@ export class HaxcmsPartyUi extends DDD {
 
   render() {
     return html`
-      <audio id="coin-sound" src="./media/coin sound.wav"></audio>
-      <audio id="remove-sound" src="./media/remove sound.mp3"></audio>
+      <audio id="coin-sound" src="./media/coin sound.wav" crossOrigin="anonymous"></audio>
+      <audio id="remove-sound" src="./media/remove sound.mp3" crossOrigin="anonymous"></audio>
       <confetti-container id="confetti">
         <div class="block">
           <h1 class="title">CHOOSE YOUR PARTY</h1>
